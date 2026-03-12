@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   step: 1,
+  orderType: null,
+  category: "sandwich",
   menu: null,
   bread: null,
   cheese: null,
@@ -23,6 +25,14 @@ const orderSlice = createSlice({
 
     setMenu: (state, action) => {
       state.menu = action.payload;
+    },
+
+    setOrderType: (state, action) => {
+      state.orderType = action.payload;
+    },
+
+    seCategory: (state, action) => {
+      state.category = action.payload;
     },
 
     setBread: (state, action) => {
@@ -58,6 +68,8 @@ const orderSlice = createSlice({
 
 export const {
   setStep,
+  setOrderType,
+  setCategory,
   setMenu,
   setBread,
   setCheese,

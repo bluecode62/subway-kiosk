@@ -6,6 +6,8 @@ import { GiSandwich, GiBroccoli, GiSaltShaker, GiTomato } from "react-icons/gi";
 import { GiCookie } from "react-icons/gi";
 import { MdLocalDrink } from "react-icons/md";
 import OrderButtons from "../components/common/OrderButtons";
+import { useDispatch } from "react-redux";
+import { setOrderType } from "../store/orderSlice";
 
 const Wrapper = styled.div`
   width: 1200px;
@@ -67,6 +69,7 @@ const MenuCard = styled.div`
 
 export default function Home() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -114,9 +117,15 @@ export default function Home() {
 
           <OrderButtons
             leftText="매장 식사"
-            onLeftClick={() => navigate("/menu")}
+            onLeftClick={() => {
+              dispatch(setOrderType("store"));
+              navigate("/menu");
+            }}
             rightText="포장 주문"
-            onRightClick={() => navigate("/menu")}
+            onRightClick={() => {
+              dispatch(setOrderType("takeout"));
+              navigate("/menu");
+            }}
           />
         </Container>
       </Wrapper>
