@@ -84,6 +84,48 @@ export const menuData = {
       price: 7600,
       image: process.env.PUBLIC_URL + "/images/sandwich/sandwich12.png",
     },
+    {
+      id: 13,
+      name: "써브웨이 클럽",
+      eng: "Subway Club",
+      price: 7500,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich13.png",
+    },
+    {
+      id: 14,
+      name: "치킨 데리야끼",
+      eng: "Chicken Teriyaki",
+      price: 7400,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich14.png",
+    },
+    {
+      id: 15,
+      name: "스파이시 이탈리안",
+      eng: "Spicy Italian",
+      price: 7200,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich15.png",
+    },
+    {
+      id: 16,
+      name: "비엘티",
+      eng: "B.L.T",
+      price: 7100,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich16.png",
+    },
+    {
+      id: 17,
+      name: "터키",
+      eng: "Turkey",
+      price: 6900,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich17.png",
+    },
+    {
+      id: 18,
+      name: "참치",
+      eng: "Tuna",
+      price: 6200,
+      image: process.env.PUBLIC_URL + "/images/sandwich/sandwich18.png",
+    },
   ],
   salad: [
 
@@ -92,6 +134,6 @@ export const menuData = {
 
   ],
   drink: [
-    
+
   ],
 }
