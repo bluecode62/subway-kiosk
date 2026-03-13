@@ -31,7 +31,7 @@ const orderSlice = createSlice({
       state.orderType = action.payload;
     },
 
-    seCategory: (state, action) => {
+    setCategory: (state, action) => {
       state.category = action.payload;
     },
 
