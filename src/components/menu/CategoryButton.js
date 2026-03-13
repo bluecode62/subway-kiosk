@@ -4,14 +4,14 @@ import { setCategory } from "../../store/orderSlice";
 import styled from "styled-components";
 
 const Button = styled.button`
-  width: 320px;
+  width: 260px;
   height: 110px;
   border: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: bold;
   cursor: pointer;
   border-top: 1px solid #fff;
@@ -22,7 +22,7 @@ const Button = styled.button`
   transition: 0.2s;
 
   img {
-    width: 150px;
+    width: 120px;
   }
 
   &:hover {

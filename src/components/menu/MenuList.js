@@ -7,10 +7,14 @@ import MenuItem from "./MenuItem";
 
 const ListContainer = styled.div`
   flex: 1;
-  padding: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: cacl(100vh - 160px);
 `;
 
 const Grid = styled.div`
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -18,6 +22,7 @@ const Grid = styled.div`
 
 const ButtonArea = styled.div`
   display: flex;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
@@ -95,7 +100,11 @@ export default function MenuList() {
 
         <IndicatorArea>
           {Array.from({ length: totalPages }).map((_, index) => (
-            <Dot key={index} active={index === currentPage} onClick={() => setCurrentPage(index)}/>
+            <Dot
+              key={index}
+              active={index === currentPage}
+              onClick={() => setCurrentPage(index)}
+            />
           ))}
         </IndicatorArea>
 

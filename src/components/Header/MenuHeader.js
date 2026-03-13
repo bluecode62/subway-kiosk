@@ -18,12 +18,12 @@ const RightBox = styled.div`
   align-items: flex-start;
   padding: 0 20px;
   flex: 1;
-  border-bottom: 1px solid #BBBBBB;
+  border-bottom: 1px solid #bbbbbb;
 `;
 
 const LogoBox = styled.div`
-  width: 320px;
-  height: 200px;
+  width: 260px;
+  height: 120px;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -31,18 +31,18 @@ const LogoBox = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 220px;
+  width: 170px;
 `;
 
 const OrderTypeBox = styled.div`
   display: flex;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 10px;
 `;
 
 const OrderButton = styled.button`
-  padding: 20px 30px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: 600;
   border: none;
   cursor: pointer;
@@ -59,8 +59,8 @@ const OrderButton = styled.button`
 `;
 
 const MenuTitle = styled.h2`
-  margin-top: 40px;
-  font-size: 32px;
+  margin: 10px 0;
+  font-size: 24px;
   font-weight: bold;
   color: #292929;
 `;
