@@ -10,18 +10,20 @@ import { useDispatch } from "react-redux";
 import { setOrderType } from "../store/orderSlice";
 
 const Wrapper = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  hieght: 100vh;
   display: flex;
   justify-content: center;
-  background: #e3efe8;
+  align-items: center;
 `;
 
 const Container = styled.div`
-  width: 900px;
+  width: 1200px;
+  height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #e3efe8;
 `;
 
 const Logo = styled.img`
@@ -33,15 +35,16 @@ const MenuGrid = styled.div`
   width: 100%;
   margin: 20px 0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: repeat(2, 400px);
+  justify-content: center;
+  gap: 50px;
 `;
 
 const IconBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
-  margin-bottom: 10px;
 `;
 
 const MenuCard = styled.div`
@@ -70,7 +73,6 @@ export default function Home() {
   const dispatch = useDispatch();
 
   return (
-    <div>
       <Wrapper>
         <Container>
           <Logo src="/images/logo_big.png" />
@@ -127,6 +129,5 @@ export default function Home() {
           />
         </Container>
       </Wrapper>
-    </div>
   );
 }

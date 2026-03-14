@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { setOrderType } from "../../store/orderSlice";
 
@@ -28,6 +29,7 @@ const LogoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const Logo = styled.img`
@@ -67,6 +69,7 @@ const MenuTitle = styled.h2`
 
 export default function MenuHeader() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const orderType = useSelector((state) => state.order.orderType);
   const category = useSelector((state) => state.order.category);
@@ -81,7 +84,7 @@ export default function MenuHeader() {
   return (
     <HeaderWrapper>
       <TopArea>
-        <LogoBox>
+        <LogoBox onClick={() => navigate("/")}>
           <Logo src="/images/logo_header.png" />
         </LogoBox>
 

@@ -4,12 +4,13 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 40px;
 `;
 
 const Button = styled.button`
   width: 300px;
-  height: 80px;
+  height: 70px;
   border-radius: 50px;
   border: none;
   background: #009223;

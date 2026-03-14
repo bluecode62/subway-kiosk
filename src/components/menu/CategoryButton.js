@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const Button = styled.button`
   width: 260px;
-  height: 110px;
+  height: 90px;
   border: none;
   display: flex;
   justify-content: space-between;
