@@ -8,13 +8,13 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
-  width: 350px;
-  height: 90px;
+  width: 300px;
+  height: 80px;
   border-radius: 50px;
   border: none;
   background: #009223;
   color: #fff;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
   cursor: pointer;
 `

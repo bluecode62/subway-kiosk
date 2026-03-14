@@ -11,7 +11,6 @@ import { setOrderType } from "../store/orderSlice";
 
 const Wrapper = styled.div`
   width: 1200px;
-  height: 1000px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -20,20 +19,19 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 900px;
-  height: 1000px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const Logo = styled.img`
-  width: 350px;
-  margin-top: 50px;
+  width: 250px;
+  margin-top: 40px;
 `;
 
 const MenuGrid = styled.div`
   width: 100%;
-  margin: 40px 0;
+  margin: 20px 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
@@ -47,7 +45,7 @@ const IconBox = styled.div`
 `;
 
 const MenuCard = styled.div`
-  height: 300px;
+  height: 240px;
   background: #fff;
   color: #292929;
   border-radius: 20px;
@@ -58,11 +56,11 @@ const MenuCard = styled.div`
   gap: 10px;
 
   h2 {
-    font-size: 35px;
+    font-size: 25px;
   }
 
   p {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
   }
 `;
