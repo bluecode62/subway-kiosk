@@ -10,19 +10,22 @@ const ListContainer = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  height: cacl(100vh - 160px);
+  justify-content: center;
+  align-items: center; 
 `;
 
 const Grid = styled.div`
-  flex: 1;
+  height: 520px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 260px);
+  justify-content: center;
+  align-items: start;
   gap: 20px;
 `;
 
 const ButtonArea = styled.div`
   display: flex;
-  height: 80px;
+  height: 50px;
   justify-content: space-between;
   align-items: center;
   gap: 20px;

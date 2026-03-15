@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
+  width: 160px;
+  height: 100px;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transition: transform 0.15s;
 
   &:hover {
@@ -12,24 +17,22 @@ const Card = styled.div`
 `;
 
 const MenuImage = styled.img`
-  width: 220px;
-  height: 140px;
   margin: 0 auto;
   object-fit: cover;
 `;
 
 const MenuName = styled.h3`
-  font-size: 18px;
+  font-size: 13px;
   color: #292929;
 `;
 const MenuEng = styled.p`
   margin: 5px 0;
-  font-size: 16px;
+  font-size: 12px;
   color: #666666;
 `;
 
 const MenuPrice = styled.p`
-  font-size: 16px;
+  font-size: 14px;
   color: #292929;
   font-weight: 600;
 `;
