@@ -23,7 +23,6 @@ const ModalBox = styled.div`
 `;
 
 const Title = styled.h2`
-
 `;
 
 const Content = styled.div`

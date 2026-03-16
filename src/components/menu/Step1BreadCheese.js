@@ -1,16 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import { setBread, setCheese } from "../../store/orderSlice";
+import { setBread, setCheese, setSize } from "../../store/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { bread, cheese } from "../../data/toppingData";
 import ToppingItem from "../common/ToppingItem";
 
 const Section = styled.div`
   margin-bottom: 40px;
-`;
-
-const Title = styled.h3`
-  margin-bottom: 20px;
 `;
 
 const Grid = styled.div`
@@ -20,16 +16,49 @@ const Grid = styled.div`
   gap: 20px;
 `;
 
+const SizeSelector = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+`;
+
+const SizeButton = styled.button`
+  width: 200px;
+  height: 50px;
+  border-radius: 30px;
+  font-size: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  border: ${(props) => (props.active ? "none" : "2px solid #666666")};
+  background: ${(props) => (props.active ? "#E95B1D" : "#fff")};
+  color: ${(props) => (props.active ? "#fff" : "#666666")};
+`;
+
 export default function Step1BreadCheese() {
   const dispatch = useDispatch();
 
   const selectedBread = useSelector((state) => state.order.bread);
   const selectedCheese = useSelector((state) => state.order.cheese);
+  const size = useSelector((state) => state.order.size);
 
   return (
     <>
       <Section>
-        <Title>빵 선택</Title>
+        <SizeSelector>
+          <SizeButton
+            active={size === "15"}
+            onClick={() => dispatch(setSize("15"))}
+          >
+            15cm
+          </SizeButton>
+          <SizeButton
+            active={size === "30"}
+            onClick={() => dispatch(setSize("30"))}
+          >
+            30cm
+          </SizeButton>
+        </SizeSelector>
 
         <Grid>
           {bread.map((item) => (
@@ -44,7 +73,6 @@ export default function Step1BreadCheese() {
       </Section>
 
       <Section>
-        <Title>치즈 선택</Title>
         <Grid>
           {cheese.map((item) => (
             <ToppingItem

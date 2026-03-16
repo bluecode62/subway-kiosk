@@ -5,6 +5,7 @@ const initialState = {
   orderType: null,
   category: "sandwich",
   menu: null,
+  size: null,
   bread: null,
   cheese: null,
   vegetables: [],
@@ -39,6 +40,10 @@ const orderSlice = createSlice({
 
     setMenu: (state, action) => {
       state.menu = action.payload;
+    },
+
+    setSize: (state, action) => {
+      state.size = action.payload;
     },
 
     setOrderType: (state, action) => {
@@ -99,6 +104,7 @@ export const {
   setOrderType,
   setCategory,
   setMenu,
+  setSize,
   setBread,
   setCheese,
   toggleVegetable,

@@ -1,10 +1,12 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
   width: 220px;
   height: 180px;
   cursor: pointer;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +17,7 @@ const Card = styled.div`
   color: ${(props) => (props.active ? "#fff" : "#292929")};
 
   &:hover {
-  transform: scale(1.0);
+    transform: scale(1);
   }
 `;
 
@@ -37,7 +39,7 @@ const EngName = styled.p`
   color: ${(props) => (props.active ? "#fff" : "#666666")};
 `;
 
-export default function ToppingItem({item, onClick, active}) {
+export default function ToppingItem({ item, onClick, active }) {
   return (
     <div>
       <Card active={active} onClick={() => onClick(item)}>
@@ -46,5 +48,5 @@ export default function ToppingItem({item, onClick, active}) {
         <EngName active={active}>{item.eng}</EngName>
       </Card>
     </div>
-  )
+  );
 }
