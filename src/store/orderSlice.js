@@ -11,16 +11,30 @@ const initialState = {
   sauce: [],
   side: null,
   drink: null,
-  cart: []
+  cart: [],
 };
 
 const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    
     setStep: (state, action) => {
       state.step = action.payload;
+    },
+
+    nextStep: (state) => {
+      state.step += 1;
+    },
+
+    prevStep: (state) => {
+      state.step -= 1;
+    },
+
+    resetTopping: (state) => {
+      state.bread = null;
+      state.cheese = null;
+      state.vegetables = [];
+      state.sauce = [];
     },
 
     setMenu: (state, action) => {
@@ -43,12 +57,24 @@ const orderSlice = createSlice({
       state.cheese = action.payload;
     },
 
-    addVegetable: (state, action) => {
-      state.vegetables.push(action.payload);
+    toggleVegetable: (state, action) => {
+      const index = state.vegetables.indexOf(action.payload);
+
+      if (index > -1) {
+        state.vegetables.splice(index, 1);
+      } else {
+        state.vegetables.push(action.payload);
+      }
     },
 
-    setSauce: (state, action) => {
-      state.sauce = action.payload;
+    toggleSauce: (state, action) => {
+      const index = state.sauce.indexOf(action.payload);
+
+      if (index > -1) {
+        state.sauce.splice(index, 1);
+      } else {
+        state.sauce.push(action.payload);
+      }
     },
 
     setSide: (state, action) => {
@@ -61,23 +87,25 @@ const orderSlice = createSlice({
 
     addCart: (state, action) => {
       state.cart.push(action.payload);
-    }
-
-  }
+    },
+  },
 });
 
 export const {
   setStep,
+  nextStep,
+  prevStep,
+  resetTopping,
   setOrderType,
   setCategory,
   setMenu,
   setBread,
   setCheese,
-  addVegetable,
-  setSauce,
+  toggleVegetable,
+  toggleSauce,
   setSide,
   setDrink,
-  addCart
+  addCart,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

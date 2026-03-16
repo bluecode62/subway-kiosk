@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
+import ToppingModal from "../common/ToppingModal";
+import OrderButtons from "../common/OrderButtons";
+import Step1BreadCheese from "./Step1BreadCheese";
 
 const ListContainer = styled.div`
   flex: 1;
@@ -65,6 +68,9 @@ export default function MenuList() {
 
   const [currentPage, setCurrentPage] = useState(0);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedMenu, setSelectedMenu] = useState(null);
+
   const pageSize = 9;
   const totalPages = Math.ceil(menus.length / pageSize);
 
@@ -87,11 +93,22 @@ export default function MenuList() {
     setCurrentPage(0);
   }, [category]);
 
+  const handleMenuClick = (menu) => {
+    if (category === "sandwich") {
+      setSelectedMenu(menu);
+      setModalOpen(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <ListContainer>
       <Grid>
         {currentMenus.map((menu) => (
-          <MenuItem key={menu.id} menu={menu} />
+          <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
         ))}
       </Grid>
 
@@ -116,6 +133,18 @@ export default function MenuList() {
           <FaChevronRight />
         </NavButton>
       </ButtonArea>
+
+      {modalOpen && (
+        <ToppingModal title="원하는 빵과 치즈를 선택해주세요!">
+          <Step1BreadCheese />
+          <OrderButtons
+            leftText="취소하기"
+            rightText="선택완료"
+            onLeftClick={closeModal}
+            onRightClick={closeModal}
+          />
+        </ToppingModal>
+      )}
     </ListContainer>
   );
 }

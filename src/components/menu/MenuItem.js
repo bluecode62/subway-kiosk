@@ -48,9 +48,9 @@ const MenuPrice = styled.p`
   font-weight: 600;
 `;
 
-export default function MenuItem({ menu }) {
+export default function MenuItem({ menu, onClick }) {
   return (
-    <Card>
+    <Card onClick={() => onClick(menu)}>
       <ImageBox>
         <MenuImage src={menu.image} alt={menu.name} />
       </ImageBox>
