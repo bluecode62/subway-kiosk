@@ -6,7 +6,11 @@ import { bread, cheese } from "../../data/toppingData";
 import ToppingItem from "../common/ToppingItem";
 
 const Section = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
 `;
 
 const Grid = styled.div`

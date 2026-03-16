@@ -71,23 +71,43 @@ const orderSlice = createSlice({
     },
 
     toggleVegetable: (state, action) => {
-      const index = state.vegetables.indexOf(action.payload);
+      const item = action.payload;
+      const exists = state.vegetables.find((v) => v.id === item.id);
 
-      if (index > -1) {
-        state.vegetables.splice(index, 1);
+      if(exists) {
+        state.vegetables = state.vegetables.filter((v) => v.id !== item.id);
       } else {
-        state.vegetables.push(action.payload);
+        state.vegetables.push(item);
       }
     },
 
     toggleSauce: (state, action) => {
-      const index = state.sauce.indexOf(action.payload);
+     const item = action.payload;
+     const exists = state.sauce.find((v) => v.id === item.id);
+     if (exists) {
+      state.sauce = state.sauce.filter((v) => v.id !== item.id);
+     } else {
+      state.sauce.push(item);
+     }
+    },
 
-      if (index > -1) {
-        state.sauce.splice(index, 1);
-      } else {
-        state.sauce.push(action.payload);
-      }
+    saveSandwich: (state) => {
+      if(!state.bread || !state.cheese) return;
+
+      const newSandwich = {
+        bread: state.bread,
+        cheese: state.cheese,
+        vegetables: [...state.vegetables],
+        sauce: [...state.sauce],
+        quantity: 1,
+      };
+
+      state.cart.push(newSandwich);
+
+      state.bread = null;
+      state.cheese = null;
+      state.vegetables = [];
+      state.sauce = [];
     },
 
     setSide: (state, action) => {
@@ -118,6 +138,7 @@ export const {
   setCheese,
   toggleVegetable,
   toggleSauce,
+  saveSandwich,
   setSide,
   setDrink,
   addCart,

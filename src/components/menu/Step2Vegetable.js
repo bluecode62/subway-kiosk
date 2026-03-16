@@ -6,8 +6,11 @@ import { toggleVegetable } from "../../store/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const Section = styled.div`
-  width: 100%;
-  max-width: 900px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
 `;
 
 const Grid = styled.div`

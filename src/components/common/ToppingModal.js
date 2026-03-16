@@ -61,9 +61,8 @@ const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  min-height: 300px;
   overflow-y: hidden;
 `;
 
