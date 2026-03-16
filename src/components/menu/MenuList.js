@@ -10,16 +10,16 @@ const ListContainer = styled.div`
   padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center; 
 `;
 
 const Grid = styled.div`
-  height: 520px;
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(3, 260px);
   justify-content: center;
-  align-items: start;
+  justify-items: center;
+  align-items: center;
+  align-content: start;
   gap: 20px;
 `;
 
@@ -29,7 +29,7 @@ const ButtonArea = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: auto;
 `;
 
 const NavButton = styled.button`

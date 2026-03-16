@@ -6,21 +6,22 @@ import MenuList from "../components/menu/MenuList";
 
 const Wrapper = styled.div`
   width: 100%;
-  hieght: 100vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 const Container = styled.div`
-  width: 1200px;
-  height: 900px;
+  max-width: 1200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 const Layout = styled.div`
   display: flex;
+  flex: 1;
 `;
 
 export default function Menu() {

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
-  width: 160px;
-  height: 100px;
+  width: 220px;
+  min-height: 160px;
   text-align: center;
   cursor: pointer;
   display: flex;
@@ -17,22 +17,23 @@ const Card = styled.div`
 `;
 
 const MenuImage = styled.img`
-  margin: 0 auto;
+  width: 220px;
+  height: 150px;
   object-fit: cover;
 `;
 
 const MenuName = styled.h3`
-  font-size: 13px;
+  font-size: 16px;
   color: #292929;
 `;
 const MenuEng = styled.p`
   margin: 5px 0;
-  font-size: 12px;
+  font-size: 14px;
   color: #666666;
 `;
 
 const MenuPrice = styled.p`
-  font-size: 14px;
+  font-size: 16px;
   color: #292929;
   font-weight: 600;
 `;

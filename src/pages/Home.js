@@ -11,7 +11,7 @@ import { setOrderType } from "../store/orderSlice";
 
 const Wrapper = styled.div`
   width: 100%;
-  hieght: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,23 +19,26 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 1200px;
-  height: 900px;
+  min-height: 1000px;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: center;
   background: #e3efe8;
 `;
 
+const Header = styled.div`
+  margin-bottom: 20px;
+`;
+
 const Logo = styled.img`
-  width: 250px;
-  margin-top: 40px;
+  width: 300px;
 `;
 
 const MenuGrid = styled.div`
   width: 100%;
-  margin: 20px 0;
   display: grid;
-  grid-template-columns: repeat(2, 400px);
+  grid-template-columns: repeat(2, 450px);
   justify-content: center;
   gap: 50px;
 `;
@@ -73,61 +76,62 @@ export default function Home() {
   const dispatch = useDispatch();
 
   return (
-      <Wrapper>
-        <Container>
+    <Wrapper>
+      <Container>
+        <Header>
           <Logo src="/images/logo_big.png" />
+        </Header>
+        <MenuGrid>
+          <MenuCard>
+            <IconBox>
+              <GiSandwich size={50} color="#d4550b" />
+              <GiBroccoli size={50} color="#439943" />
+            </IconBox>
+            <h2>메뉴 선택</h2>
+            <p>샌드위치 or 샐러드 선택</p>
+          </MenuCard>
 
-          <MenuGrid>
-            <MenuCard>
-              <IconBox>
-                <GiSandwich size={50} color="#d4550b" />
-                <GiBroccoli size={50} color="#439943" />
-              </IconBox>
-              <h2>메뉴 선택</h2>
-              <p>샌드위치 or 샐러드 선택</p>
-            </MenuCard>
+          <MenuCard>
+            <IconBox>
+              <FaBreadSlice size={50} color="#ffc04b" />
+              <FaCheese size={50} color="#FFD700" />
+            </IconBox>
+            <h2>빵, 치즈 선택</h2>
+            <p>원하는 빵, 치즈 선택</p>
+          </MenuCard>
 
-            <MenuCard>
-              <IconBox>
-                <FaBreadSlice size={50} color="#ffc04b" />
-                <FaCheese size={50} color="#FFD700" />
-              </IconBox>
-              <h2>빵, 치즈 선택</h2>
-              <p>원하는 빵, 치즈 선택</p>
-            </MenuCard>
+          <MenuCard>
+            <IconBox>
+              <GiTomato size={50} color="#cd3232" />
+              <GiSaltShaker size={50} color="#707070" />
+            </IconBox>
+            <h2>야채, 소스 선택</h2>
+            <p>원하는 스타일로 토핑 선택</p>
+          </MenuCard>
 
-            <MenuCard>
-              <IconBox>
-                <GiTomato size={50} color="#cd3232" />
-                <GiSaltShaker size={50} color="#707070" />
-              </IconBox>
-              <h2>야채, 소스 선택</h2>
-              <p>원하는 스타일로 토핑 선택</p>
-            </MenuCard>
+          <MenuCard>
+            <IconBox>
+              <GiCookie size={50} color="#8B4513" />
+              <MdLocalDrink size={50} color="#008ada" />
+            </IconBox>
+            <h2>사이드, 음료 선택</h2>
+            <p>추가 메뉴 선택</p>
+          </MenuCard>
+        </MenuGrid>
 
-            <MenuCard>
-              <IconBox>
-                <GiCookie size={50} color="#8B4513" />
-                <MdLocalDrink size={50} color="#008ada" />
-              </IconBox>
-              <h2>사이드, 음료 선택</h2>
-              <p>추가 메뉴 선택</p>
-            </MenuCard>
-          </MenuGrid>
-
-          <OrderButtons
-            leftText="매장 식사"
-            onLeftClick={() => {
-              dispatch(setOrderType("store"));
-              navigate("/menu");
-            }}
-            rightText="포장 주문"
-            onRightClick={() => {
-              dispatch(setOrderType("takeout"));
-              navigate("/menu");
-            }}
-          />
-        </Container>
-      </Wrapper>
+        <OrderButtons
+          leftText="매장 식사"
+          onLeftClick={() => {
+            dispatch(setOrderType("store"));
+            navigate("/menu");
+          }}
+          rightText="포장 주문"
+          onRightClick={() => {
+            dispatch(setOrderType("takeout"));
+            navigate("/menu");
+          }}
+        />
+      </Container>
+    </Wrapper>
   );
 }
