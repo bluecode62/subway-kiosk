@@ -19,12 +19,13 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   width: 1200px;
-  min-height: 1000px;
+  height: 1000px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
+  gap: 20px;
   background: #e3efe8;
+  box-sizing: border-box;
 `;
 
 const Header = styled.div`

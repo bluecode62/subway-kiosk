@@ -4,14 +4,14 @@ import { setCategory } from "../../store/orderSlice";
 import styled from "styled-components";
 
 const Button = styled.button`
-  width: 260px;
-  height: 90px;
+  width: 220px;
+  height: 80px;
   border: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   border-top: 1px solid #fff;

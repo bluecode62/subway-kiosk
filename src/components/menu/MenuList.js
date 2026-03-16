@@ -6,18 +6,25 @@ import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
 import ToppingModal from "../common/ToppingModal";
 import { resetSandwich, setStep } from "../../store/orderSlice";
+import CartBar from "../cart/CartBar";
 
 const ListContainer = styled.div`
   flex: 1;
   padding: 10px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+`;
+
+const GridWrapper = styled.div`
+  height: 450px;
 `;
 
 const Grid = styled.div`
-  flex: 1;
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 260px);
+  grid-template-columns: repeat(3, 240px);
   justify-content: center;
   justify-items: center;
   align-items: center;
@@ -27,17 +34,15 @@ const Grid = styled.div`
 
 const ButtonArea = styled.div`
   display: flex;
-  height: 50px;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
   margin-top: auto;
 `;
 
 const NavButton = styled.button`
   border: none;
   background: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer;
   color: #666666;
@@ -54,14 +59,12 @@ const IndicatorArea = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: ${(props) => (props.active ? "#1c8f2f" : "#ddd")};
   cursor: pointer;
 `;
-
-
 
 export default function MenuList() {
   const dispatch = useDispatch();
@@ -69,6 +72,7 @@ export default function MenuList() {
   const step = useSelector((state) => state.order.step);
   const menus = menuData[category] || [];
   const [warning, setWarning] = useState("");
+  const cart = useSelector((state) => state.order.cart);
 
   const size = useSelector((state) => state.order.size);
   const bread = useSelector((state) => state.order.bread);
@@ -136,14 +140,15 @@ export default function MenuList() {
     }
   }, [size, bread, cheese]);
 
-
   return (
     <ListContainer>
-      <Grid>
-        {currentMenus.map((menu) => (
-          <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-        ))}
-      </Grid>
+      <GridWrapper>
+        <Grid>
+          {currentMenus.map((menu) => (
+            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
+          ))}
+        </Grid>
+      </GridWrapper>
 
       <ButtonArea>
         <NavButton onClick={prevPage} disabled={currentPage === 0}>
@@ -179,6 +184,8 @@ export default function MenuList() {
           warning={warning}
         ></ToppingModal>
       )}
+
+      <CartBar cart={cart} />
     </ListContainer>
   );
 }

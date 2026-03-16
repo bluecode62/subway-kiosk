@@ -3,6 +3,7 @@ import MenuHeader from "../components/Header/MenuHeader";
 import CategorySidebar from "../components/menu/CategorySidebar";
 import styled from "styled-components";
 import MenuList from "../components/menu/MenuList";
+import CartBar from "../components/cart/CartBar";
 
 const Wrapper = styled.div`
   width: 100%;

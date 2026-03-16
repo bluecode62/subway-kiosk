@@ -23,7 +23,7 @@ const RightBox = styled.div`
 `;
 
 const LogoBox = styled.div`
-  width: 260px;
+  width: 220px;
   height: 120px;
   background: #fff;
   display: flex;
