@@ -32,15 +32,10 @@ const CartItem = styled.div`
   border-bottom: 1px solid #ddd;
 `;
 
-export default function Step3Sauce({ onNext }) {
+export default function Step3Sauce() {
   const dispatch = useDispatch();
-  const selectedSauces = useSelector((state) => state.order.sauces);
+  const selectedSauces = useSelector((state) => state.order.sauce);
   const cart = useSelector((state) => state.order.cart);
-
-  const handleNext = () => {
-    dispatch(saveSandwich());
-    onNext();
-  };
 
   return (
     <>
