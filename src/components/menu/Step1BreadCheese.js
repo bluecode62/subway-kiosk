@@ -13,21 +13,21 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 220px);
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const SizeSelector = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 `;
 
 const SizeButton = styled.button`
   width: 200px;
   height: 50px;
   border-radius: 30px;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 600;
   cursor: pointer;
   border: ${(props) => (props.active ? "none" : "2px solid #666666")};

@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
 import ToppingModal from "../common/ToppingModal";
-import OrderButtons from "../common/OrderButtons";
-import Step1BreadCheese from "./Step1BreadCheese";
+import { resetSandwich, setStep } from "../../store/orderSlice";
 
 const ListContainer = styled.div`
   flex: 1;
@@ -62,9 +61,18 @@ const Dot = styled.div`
   cursor: pointer;
 `;
 
+
+
 export default function MenuList() {
+  const dispatch = useDispatch();
   const category = useSelector((state) => state.order.category);
+  const step = useSelector((state) => state.order.step);
   const menus = menuData[category] || [];
+  const [warning, setWarning] = useState("");
+
+  const size = useSelector((state) => state.order.size);
+  const bread = useSelector((state) => state.order.bread);
+  const cheese = useSelector((state) => state.order.cheese);
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -100,9 +108,34 @@ export default function MenuList() {
     }
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const handleNext = () => {
+    if (step === 1) {
+      if (!size) {
+        setWarning("빵 길이를 선택해주세요.");
+        return;
+      }
+
+      if (!bread) {
+        setWarning("빵을 선택해주세요.");
+        return;
+      }
+
+      if (!cheese) {
+        setWarning("치즈를 선택해주세요.");
+        return;
+      }
+    }
+
+    setWarning("");
+    dispatch(setStep(step + 1));
   };
+
+  useEffect(() => {
+    if (size && bread && cheese) {
+      setWarning("");
+    }
+  }, [size, bread, cheese]);
+
 
   return (
     <ListContainer>
@@ -135,15 +168,16 @@ export default function MenuList() {
       </ButtonArea>
 
       {modalOpen && (
-        <ToppingModal title="원하는 빵과 치즈를 선택해주세요!">
-          <Step1BreadCheese />
-          <OrderButtons
-            leftText="취소하기"
-            rightText="선택완료"
-            onLeftClick={closeModal}
-            onRightClick={closeModal}
-          />
-        </ToppingModal>
+        <ToppingModal
+          onCancel={() => {
+            dispatch(resetSandwich());
+            dispatch(setStep(1));
+            setWarning("");
+            setModalOpen(false);
+          }}
+          onNext={handleNext}
+          warning={warning}
+        ></ToppingModal>
       )}
     </ListContainer>
   );

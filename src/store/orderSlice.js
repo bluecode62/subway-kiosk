@@ -31,6 +31,14 @@ const orderSlice = createSlice({
       state.step -= 1;
     },
 
+    resetSandwich: (state) => {      
+      state.size = null;
+      state.bread = null;
+      state.cheese = null;
+      state.vegetables = [];
+      state.sauce = [];
+    },
+
     resetTopping: (state) => {
       state.bread = null;
       state.cheese = null;
@@ -100,6 +108,7 @@ export const {
   setStep,
   nextStep,
   prevStep,
+  resetSandwich,
   resetTopping,
   setOrderType,
   setCategory,
