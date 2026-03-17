@@ -14,6 +14,7 @@ const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
 `;
 
 const ModalBox = styled.div`
@@ -75,6 +76,7 @@ export default function ToppingModal({ onCancel, warning }) {
   const handleNext = () => {
     if (step === 3) {
       dispatch(saveSandwich());
+      onCancel();
       console.log("장바구니로 이동!");
     } else {
       dispatch(nextStep());

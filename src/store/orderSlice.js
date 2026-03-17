@@ -31,7 +31,7 @@ const orderSlice = createSlice({
       state.step -= 1;
     },
 
-    resetSandwich: (state) => {      
+    resetSandwich: (state) => {
       state.size = null;
       state.bread = null;
       state.cheese = null;
@@ -74,7 +74,7 @@ const orderSlice = createSlice({
       const item = action.payload;
       const exists = state.vegetables.find((v) => v.id === item.id);
 
-      if(exists) {
+      if (exists) {
         state.vegetables = state.vegetables.filter((v) => v.id !== item.id);
       } else {
         state.vegetables.push(item);
@@ -82,19 +82,23 @@ const orderSlice = createSlice({
     },
 
     toggleSauce: (state, action) => {
-     const item = action.payload;
-     const exists = state.sauce.find((v) => v.id === item.id);
-     if (exists) {
-      state.sauce = state.sauce.filter((v) => v.id !== item.id);
-     } else {
-      state.sauce.push(item);
-     }
+      const item = action.payload;
+      const exists = state.sauce.find((v) => v.id === item.id);
+      if (exists) {
+        state.sauce = state.sauce.filter((v) => v.id !== item.id);
+      } else {
+        state.sauce.push(item);
+      }
     },
 
     saveSandwich: (state) => {
-      if(!state.bread || !state.cheese) return;
+      if (!state.bread || !state.cheese) return;
 
       const newSandwich = {
+        id: state.menu?.id,
+        name: state.menu?.name,
+        image: state.menu?.image,
+        price: state.menu.price,
         bread: state.bread,
         cheese: state.cheese,
         vegetables: [...state.vegetables],
@@ -108,6 +112,19 @@ const orderSlice = createSlice({
       state.cheese = null;
       state.vegetables = [];
       state.sauce = [];
+    },
+
+    increaseQuantity: (state, action) => {
+      const index = action.payload;
+      if (state.cart[index]) state.cart[index].quantity += 1;
+    },
+    decreaseQuantity: (state, action) => {
+      const index = action.payload;
+      if (state.cart[index] && state.cart[index].quantity > 1) {
+        state.cart[index].quantity -= 1;
+      } else if (state.cart[index]) {
+        state.cart.splice(index, 1);
+      }
     },
 
     setSide: (state, action) => {
@@ -139,6 +156,8 @@ export const {
   toggleVegetable,
   toggleSauce,
   saveSandwich,
+  increaseQuantity,
+  decreaseQuantity,
   setSide,
   setDrink,
   addCart,

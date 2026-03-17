@@ -5,7 +5,7 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
 import ToppingModal from "../common/ToppingModal";
-import { resetSandwich, setStep } from "../../store/orderSlice";
+import { addCart, resetSandwich, setMenu, setStep } from "../../store/orderSlice";
 
 const ListContainer = styled.div`
   flex: 1;
@@ -73,7 +73,6 @@ export default function MenuList() {
   const [currentPage, setCurrentPage] = useState(0);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState(null);
 
   const pageSize = 9;
   const totalPages = Math.ceil(menus.length / pageSize);
@@ -99,8 +98,16 @@ export default function MenuList() {
 
   const handleMenuClick = (menu) => {
     if (category === "sandwich") {
-      setSelectedMenu(menu);
+      dispatch(setMenu(menu));
       setModalOpen(true);
+    } else {
+      dispatch(addCart({
+          id: menu.id,
+          name: menu.name,
+          image: menu.image,
+          price: menu.price,
+          quantity: 1
+      }));
     }
   };
 
