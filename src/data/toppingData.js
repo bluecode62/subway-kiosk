@@ -186,19 +186,19 @@ export const sauce = [
     id: 12,
     name: "레드 와인 식초",
     eng: "Red Wine Vinaigrette",
-    image:  process.env.PUBLIC_URL + "/images/sauce/sauce012.png",
+    image:  process.env.PUBLIC_URL + "/images/sauce/sauce12.png",
   },
  {
     id: 13,
     name: "소금",
     eng: "Salt",
-    image:  process.env.PUBLIC_URL + "/images/sauce/sauce013.png",
+    image:  process.env.PUBLIC_URL + "/images/sauce/sauce13.png",
   },
  {
     id: 14,
     name: "후추",
     eng: "Black Pepper",
-    image:  process.env.PUBLIC_URL + "/images/sauce/sauce014.png",
+    image:  process.env.PUBLIC_URL + "/images/sauce/sauce14.png",
   },
 
 ];

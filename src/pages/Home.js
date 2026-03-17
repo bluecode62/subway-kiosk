@@ -14,7 +14,6 @@ const Wrapper = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 
 const Container = styled.div`
@@ -24,6 +23,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  padding: 40px;
   background: #e3efe8;
   box-sizing: border-box;
 `;
