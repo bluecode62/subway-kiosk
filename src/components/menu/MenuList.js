@@ -5,7 +5,14 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
 import ToppingModal from "../common/ToppingModal";
-import { resetSandwich, saveMenuItem, saveSandwich, setMenu, setSide, setStep } from "../../store/orderSlice";
+import {
+  resetSandwich,
+  saveMenuItem,
+  saveSandwich,
+  setMenu,
+  setSide,
+  setStep,
+} from "../../store/orderSlice";
 
 const ListContainer = styled.div`
   flex: 1;
@@ -95,8 +102,9 @@ export default function MenuList() {
   };
 
   useEffect(() => {
+    dispatch(setMenu(null));
     setCurrentPage(0);
-  }, [category]);
+  }, [category, dispatch]);
 
   const handleMenuClick = (menu) => {
     if (category === "sandwich") {
@@ -125,15 +133,15 @@ export default function MenuList() {
       }
     }
 
-    if(step === 2) {
-      if(!vegetables || vegetables.length === 0){
+    if (step === 2) {
+      if (!vegetables || vegetables.length === 0) {
         setWarning("야채를 최소 1개 선택해주세요.");
         return;
       }
     }
 
-    if(step === 3) {
-      if(!sauce || sauce.length === 0){
+    if (step === 3) {
+      if (!sauce || sauce.length === 0) {
         setWarning("소스를 선택해주세요.");
         return;
       }
@@ -158,13 +166,11 @@ export default function MenuList() {
 
   return (
     <ListContainer>
-
-        <Grid>
-          {currentMenus.map((menu) => (
-            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-          ))}
-        </Grid>
-
+      <Grid>
+        {currentMenus.map((menu) => (
+          <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
+        ))}
+      </Grid>
 
       <ButtonArea>
         <NavButton onClick={prevPage} disabled={currentPage === 0}>
@@ -200,8 +206,6 @@ export default function MenuList() {
           warning={warning}
         ></ToppingModal>
       )}
-
-  
     </ListContainer>
   );
 }

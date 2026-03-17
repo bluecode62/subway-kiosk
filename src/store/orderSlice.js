@@ -128,7 +128,7 @@ const orderSlice = createSlice({
       if (!menu) return;
 
       const newItem = {
-        id: menu.id,
+        id: menu.id + '-' + state.category,
         name: menu.name,
         image: menu.image,
         price: menu.price || 0,
