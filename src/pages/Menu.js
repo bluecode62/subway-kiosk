@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 `;
 
 const Container = styled.div`
+  width: 100%;
   max-width: 1200px;
   height: 100%;
   display: flex;

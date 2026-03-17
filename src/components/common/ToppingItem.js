@@ -28,7 +28,7 @@ const Image = styled.img`
 `;
 
 const Name = styled.p`
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 500;
   color: ${(props) => (props.active ? "#fff" : "#292929")};
 `;

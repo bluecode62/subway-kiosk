@@ -1,10 +1,9 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Step1BreadCheese from "../menu/Step1BreadCheese";
 import Step2Vegetable from "../menu/Step2Vegetable";
 import OrderButtons from "./OrderButtons";
-import { nextStep, saveSandwich } from "../../store/orderSlice";
 import Step3Sauce from "../menu/Step3Sauce";
 
 const Overlay = styled.div`
@@ -69,19 +68,8 @@ const Content = styled.div`
   overflow-y: hidden;
 `;
 
-export default function ToppingModal({ onCancel, warning }) {
+export default function ToppingModal({ onCancel, warning, onNext }) {
   const step = useSelector((state) => state.order.step);
-  const dispatch = useDispatch();
-
-  const handleNext = () => {
-    if (step === 3) {
-      dispatch(saveSandwich());
-      onCancel();
-      console.log("장바구니로 이동!");
-    } else {
-      dispatch(nextStep());
-    }
-  };
 
   const title =
     step === 1
@@ -94,20 +82,22 @@ export default function ToppingModal({ onCancel, warning }) {
     <Overlay>
       <ModalBox>
         <StepText>{title}</StepText>
-
         {warning && <Warning>{warning}</Warning>}
         <Content>
           {step === 1 && <Step1BreadCheese />}
           {step === 2 && <Step2Vegetable />}
           {step === 3 && <Step3Sauce />}
-        </Content>
 
-        <OrderButtons
-          leftText="취소하기"
-          rightText="다음"
-          onLeftClick={onCancel}
-          onRightClick={handleNext}
-        />
+          <OrderButtons
+            leftText="취소하기"
+            rightText="다음"
+            onLeftClick={onCancel}
+            onRightClick={onNext}
+            width="200px"
+            height="60px"
+            fontSize="25px"
+          />
+        </Content>
       </ModalBox>
     </Overlay>
   );

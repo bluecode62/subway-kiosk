@@ -92,13 +92,13 @@ const orderSlice = createSlice({
     },
 
     saveSandwich: (state) => {
-      if (!state.bread || !state.cheese) return;
+      if (!state.bread || !state.cheese || !state.menu) return;
 
       const newSandwich = {
         id: state.menu?.id,
         name: state.menu?.name,
         image: state.menu?.image,
-        price: state.menu.price,
+        price: state.menu?.price,
         bread: state.bread,
         cheese: state.cheese,
         vegetables: [...state.vegetables],
@@ -106,12 +106,42 @@ const orderSlice = createSlice({
         quantity: 1,
       };
 
-      state.cart.push(newSandwich);
+      const existingItem = state.cart.find(
+        (item) => item.id === newSandwich.id
+      );
 
+      if(existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        state.cart.push(newSandwich);
+      }
+
+      state.size = null;
       state.bread = null;
       state.cheese = null;
       state.vegetables = [];
       state.sauce = [];
+    },
+
+    saveMenuItem: (state, action) => {
+      const menu = action.payload;
+      if (!menu) return;
+
+      const newItem = {
+        id: menu.id,
+        name: menu.name,
+        image: menu.image,
+        price: menu.price || 0,
+        quantity: 1,
+      };
+
+      const existingItem = state.cart.find((item) => item.id === newItem.id);
+
+      if(existingItem){
+        existingItem.quantity += 1;
+      } else {
+        state.cart.push(newItem);
+      }
     },
 
     increaseQuantity: (state, action) => {
@@ -156,6 +186,7 @@ export const {
   toggleVegetable,
   toggleSauce,
   saveSandwich,
+  saveMenuItem,
   increaseQuantity,
   decreaseQuantity,
   setSide,

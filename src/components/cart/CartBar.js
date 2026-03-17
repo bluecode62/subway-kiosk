@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -7,51 +7,88 @@ import OrderButtons from "../common/OrderButtons";
 import { decreaseQuantity, increaseQuantity } from "../../store/orderSlice";
 
 const CartWrapper = styled.div`
-  height: 250px;
+  height: 240px;
   border-top: 1px solid #ddd;
   display: flex;
   flex-direction: column;
   padding: 10px;
   background: #e3efe8;
+  overflow: hidden;
   justify-content: space-between;
 `;
+
+const CartTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 const CartTitle = styled.h4`
   margin: 0 10px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   text-align: left;
 `;
 
-const CartTop = styled.div`
+const CartCount = styled.span`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: #1a7f37;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  border-radius: 5px;
+`;
+
+const CartMain = styled.div`
   display: flex;
-  flex: 1;
   justify-content: space-between;
-  margin-bottom: 10px;
+  align-items: center;
+`;
+
+const CartItemsWrapper = styled.div`
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
 `;
 
 const CartItems = styled.div`
   display: flex;
   overflow-x: auto;
-  gap: 10px;
+  gap: 5px;
   padding: 10px 40px;
-  flex: 1;
-  max-width: 100%;
   position: relative;
+  width: calc(200px * 5 + 14px * 3);
+  flex-shrink: 0;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 const ArrowButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 5;
   background: none;
   border: none;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 30px;
 `;
 
 const LeftArrow = styled(ArrowButton)`
@@ -63,8 +100,8 @@ const RightArrow = styled(ArrowButton)`
 `;
 
 const CartItemBox = styled.div`
-  min-width: 150px;
-  height: 140px;
+  width: 190px;
+  height: 120px;
   border: 1px solid #ccc;
   border-radius: 10px;
   flex-shrink: 0;
@@ -73,20 +110,23 @@ const CartItemBox = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  p {
+  font-size: 12px;
+  font-weight: 600;
+  }
 `;
 
 const CartItemImage = styled.img`
-  width: 150px;
-  height: 80px;
+  width: 120px;
+  height: 70px;
   object-fit: cover;
 `;
 
 const QuantityWrapper = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin-top: 5px;
+  gap: 5px;
 
   button {
     width: 20px;
@@ -115,7 +155,7 @@ const QuantityWrapper = styled.div`
 
 const CartSummary = styled.div`
   width: 180px;
-  height: 120px;
+  height: 150px;
   line-height: 50px;
   text-align: right;
   font-weight: 700;
@@ -127,12 +167,58 @@ const CartSummary = styled.div`
 
 export default function CartBar() {
   const navigate = useNavigate();
+  const scrollRef = useRef(null);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.order.cart) || [];
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = x - startX;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const onMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const ITEM_WIDTH = 200;
+  const GAP = 5;
+  const MOVE_COUNT = 5;
+
+  const scrollAmount = (ITEM_WIDTH + GAP) * MOVE_COUNT;
+
+  const handleScrollRight = () => {
+    scrollRef.current.scrollBy({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScrollLeft = () => {
+    scrollRef.current.scrollBy({
+      left: -scrollAmount,
+      behaviro: "smooth",
+    });
+  };
 
   const handleNext = () => {
     if (cart.length === 0) {
@@ -148,37 +234,47 @@ export default function CartBar() {
 
   return (
     <CartWrapper>
-      <CartTitle>장바구니</CartTitle>
-      <CartTop>
-        <CartItems>
-          <LeftArrow>
+      <CartTitleWrapper>
+        <CartTitle>장바구니</CartTitle>
+        <CartCount>{cart.length}</CartCount>
+      </CartTitleWrapper>
+      <CartMain>
+        <CartItemsWrapper>
+          <LeftArrow onClick={handleScrollLeft}>
             <IoIosArrowBack />
           </LeftArrow>
-
-          {cart.map((item, index) => (
-            <CartItemBox key={index}>
-              <CartItemImage src={item.image} alt={item.name} />
-              <QuantityWrapper>
-                <button onClick={() => dispatch(decreaseQuantity(index))}>
-                  -
-                </button>
-                <span>{item.quantity}</span>
-                <button onClick={() => dispatch(increaseQuantity(index))}>
-                  +
-                </button>
-              </QuantityWrapper>
-            </CartItemBox>
-          ))}
-          <RightArrow>
+          <CartItems
+            ref={scrollRef}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseLeave}
+          >
+            {cart.map((item, index) => (
+              <CartItemBox key={index}>
+                <CartItemImage src={item.image} alt={item.name} />
+                <p>{item.name}</p>
+                <QuantityWrapper>
+                  <button onClick={() => dispatch(decreaseQuantity(index))}>
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => dispatch(increaseQuantity(index))}>
+                    +
+                  </button>
+                </QuantityWrapper>
+              </CartItemBox>
+            ))}
+          </CartItems>
+          <RightArrow onClick={handleScrollRight}>
             <IoIosArrowForward />
           </RightArrow>
-        </CartItems>
-
+        </CartItemsWrapper>
         <CartSummary>
           <p>총 주문금액: </p>
           <p>₩{totalPrice.toLocaleString("ko-KR")}</p>
         </CartSummary>
-      </CartTop>
+      </CartMain>
       <OrderButtons
         leftText="이전"
         rightText="다음"
