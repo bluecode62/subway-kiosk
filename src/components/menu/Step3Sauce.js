@@ -20,17 +20,6 @@ const Grid = styled.div`
   justify-content: center;
 `;
 
-const SmallToppingItem = styled(ToppingItem)`
-  & > div {
-  width: 120px;
-  height: 50px;
-  }
-
-  img {
-    width: 70px;
-    height: 50px;
-  }
-`
 
 export default function Step3Sauce() {
   const dispatch = useDispatch();
@@ -41,7 +30,7 @@ export default function Step3Sauce() {
       <Section>
         <Grid>
           {sauce.map((item) => (
-            <SmallToppingItem
+            <ToppingItem
               key={item.id}
               item={item}
               active={selectedSauces.some((v) => v.id === item.id)}

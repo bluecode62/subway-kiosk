@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
-  width: 220px;
-  height: 180px;
+  width: 180px;
+  height: 155px;
   cursor: pointer;
   border: 1px solid #dddddd;
   border-radius: 10px;
@@ -22,19 +22,19 @@ const Card = styled.div`
 `;
 
 const Image = styled.img`
-  width: 180px;
-  height: 100px;
+  width: 150px;
+  height: 90px;
   object-fit: cover;
 `;
 
 const Name = styled.p`
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: ${(props) => (props.active ? "#fff" : "#292929")};
 `;
 
 const EngName = styled.p`
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: ${(props) => (props.active ? "#fff" : "#666666")};
 `;
