@@ -24,7 +24,7 @@ const RightBox = styled.div`
 
 const LogoBox = styled.div`
   width: 220px;
-  height: 120px;
+  height: 110px;
   background: #fff;
   display: flex;
   justify-content: center;
@@ -33,7 +33,7 @@ const LogoBox = styled.div`
 `;
 
 const Logo = styled.img`
-  width: 170px;
+  width: 150px;
 `;
 
 const OrderTypeBox = styled.div`
@@ -48,11 +48,8 @@ const OrderButton = styled.button`
   font-weight: 600;
   border: none;
   cursor: pointer;
-
   background: ${(props) => (props.active ? "#FFCE32" : "#fff")};
-
   color: ${(props) => (props.active ? "#006633" : "#292929")};
-
   transition: 0.2s;
 
   &:hover {
@@ -62,7 +59,7 @@ const OrderButton = styled.button`
 
 const MenuTitle = styled.h2`
   margin: 10px 0;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: #292929;
 `;

@@ -7,14 +7,10 @@ import OrderButtons from "../common/OrderButtons";
 import { decreaseQuantity, increaseQuantity } from "../../store/orderSlice";
 
 const CartWrapper = styled.div`
-  height: 240px;
+  height: 250px;
   border-top: 1px solid #ddd;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
   background: #e3efe8;
   overflow: hidden;
-  justify-content: space-between;
 `;
 
 const CartTitleWrapper = styled.div`
@@ -23,8 +19,8 @@ const CartTitleWrapper = styled.div`
 `;
 
 const CartTitle = styled.h4`
-  margin: 0 10px;
-  font-size: 16px;
+  margin: 5px 20px;
+  font-size: 14px;
   font-weight: 700;
   text-align: left;
 `;
@@ -49,10 +45,11 @@ const CartMain = styled.div`
 `;
 
 const CartItemsWrapper = styled.div`
-  position: relative;
-  flex: 1;
   display: flex;
+  flex: 1;  
   align-items: center;
+  position: relative;
+  overflow: hidden;
 `;
 
 const CartItems = styled.div`
@@ -112,14 +109,14 @@ const CartItemBox = styled.div`
   justify-content: center;
 
   p {
-  font-size: 12px;
-  font-weight: 600;
+    font-size: 12px;
+    font-weight: 600;
   }
 `;
 
 const CartItemImage = styled.img`
   width: 120px;
-  height: 70px;
+  height: 75px;
   object-fit: cover;
 `;
 
@@ -151,6 +148,14 @@ const QuantityWrapper = styled.div`
     font-weight: 600;
     font-size: 14px;
   }
+`;
+
+const CartButtonsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-shrink: 0;
 `;
 
 const CartSummary = styled.div`
@@ -275,16 +280,19 @@ export default function CartBar() {
           <p>₩{totalPrice.toLocaleString("ko-KR")}</p>
         </CartSummary>
       </CartMain>
-      <OrderButtons
-        leftText="이전"
-        rightText="다음"
-        onLeftClick={handlePrev}
-        onRightClick={handleNext}
-        width="180px"
-        height="50px"
-        fontSize="22px"
-        disabledRight={false}
-      />
+
+      <CartButtonsWrapper>
+        <OrderButtons
+          leftText="이전"
+          rightText="다음"
+          onLeftClick={handlePrev}
+          onRightClick={handleNext}
+          width="180px"
+          height="50px"
+          fontSize="22px"
+          disabledRight={false}
+        />
+      </CartButtonsWrapper>
     </CartWrapper>
   );
 }

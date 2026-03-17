@@ -11,13 +11,15 @@ import { setOrderType } from "../store/orderSlice";
 
 const Wrapper = styled.div`
   width: 100%;
+  min-width: 800px;
   min-height: 100vh;
   display: flex;
   justify-content: center;
 `;
 
 const Container = styled.div`
-  width: 1200px;
+  width: 95%;
+  max-width: 1200px;
   height: 1000px;
   display: flex;
   flex-direction: column;
@@ -39,7 +41,7 @@ const Logo = styled.img`
 const MenuGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 450px);
+  grid-template-columns: repeat(2, minmax(400px, 1fr));
   justify-content: center;
   gap: 50px;
 `;
@@ -52,7 +54,7 @@ const IconBox = styled.div`
 `;
 
 const MenuCard = styled.div`
-  height: 240px;
+  height: 280px;
   background: #fff;
   color: #292929;
   border-radius: 20px;
@@ -70,6 +72,13 @@ const MenuCard = styled.div`
     font-size: 18px;
     font-weight: 500;
   }
+`;
+
+const OrderButtonsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
 `;
 
 export default function Home() {
@@ -120,18 +129,20 @@ export default function Home() {
           </MenuCard>
         </MenuGrid>
 
-        <OrderButtons
-          leftText="매장 식사"
-          onLeftClick={() => {
-            dispatch(setOrderType("store"));
-            navigate("/menu");
-          }}
-          rightText="포장 주문"
-          onRightClick={() => {
-            dispatch(setOrderType("takeout"));
-            navigate("/menu");
-          }}
-        />
+        <OrderButtonsWrapper>
+          <OrderButtons
+            leftText="매장 식사"
+            onLeftClick={() => {
+              dispatch(setOrderType("store"));
+              navigate("/menu");
+            }}
+            rightText="포장 주문"
+            onRightClick={() => {
+              dispatch(setOrderType("takeout"));
+              navigate("/menu");
+            }}
+          />
+        </OrderButtonsWrapper>
       </Container>
     </Wrapper>
   );

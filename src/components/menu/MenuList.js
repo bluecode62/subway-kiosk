@@ -16,17 +16,22 @@ import {
 
 const ListContainer = styled.div`
   flex: 1;
-  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
 
+const MenuListWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 560px;
+`;
+
 const Grid = styled.div`
   width: 100%;
-  height: 100%;
+  height: 500px;
   display: grid;
-  grid-template-columns: repeat(3, 240px);
+  grid-template-columns: repeat(3, 250px);
   justify-content: center;
   justify-items: center;
   align-content: start;
@@ -37,6 +42,8 @@ const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100px;
+  margin-top:20px;
 `;
 
 const NavButton = styled.button`
@@ -166,33 +173,38 @@ export default function MenuList() {
 
   return (
     <ListContainer>
-      <Grid>
-        {currentMenus.map((menu) => (
-          <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-        ))}
-      </Grid>
-
-      <ButtonArea>
-        <NavButton onClick={prevPage} disabled={currentPage === 0}>
-          <FaChevronLeft />
-          이전
-        </NavButton>
-
-        <IndicatorArea>
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <Dot
-              key={index}
-              active={index === currentPage}
-              onClick={() => setCurrentPage(index)}
-            />
+      <MenuListWrapper>
+        <Grid>
+          {currentMenus.map((menu) => (
+            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
           ))}
-        </IndicatorArea>
+        </Grid>
 
-        <NavButton onClick={nextPage} disabled={currentPage === totalPages - 1}>
-          다음
-          <FaChevronRight />
-        </NavButton>
-      </ButtonArea>
+        <ButtonArea>
+          <NavButton onClick={prevPage} disabled={currentPage === 0}>
+            <FaChevronLeft />
+            이전
+          </NavButton>
+
+          <IndicatorArea>
+            {Array.from({ length: totalPages }).map((_, index) => (
+              <Dot
+                key={index}
+                active={index === currentPage}
+                onClick={() => setCurrentPage(index)}
+              />
+            ))}
+          </IndicatorArea>
+
+          <NavButton
+            onClick={nextPage}
+            disabled={currentPage === totalPages - 1}
+          >
+            다음
+            <FaChevronRight />
+          </NavButton>
+        </ButtonArea>
+      </MenuListWrapper>
 
       {modalOpen && (
         <ToppingModal
