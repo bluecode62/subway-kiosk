@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -9,22 +9,46 @@ const Wrapper = styled.div`
 `;
 
 const Button = styled.button`
-  width: 300px;
-  height: 70px;
+  width: ${(props) => props.width || "300px"};
+  height: ${(props) => props.height || "70px"};
   border-radius: 50px;
   border: none;
   background: #009223;
   color: #fff;
-  font-size: 30px;
+  font-size: ${(props) => props.fontSize || "30px"};
   font-weight: 600;
   cursor: pointer;
-`
+`;
 
-export default function OrderButtons({leftText, rightText, onLeftClick, onRightClick}) {
+export default function OrderButtons({
+  leftText,
+  rightText,
+  onLeftClick,
+  onRightClick,
+  disabledRight,
+  width,
+  height,
+  fontSize,
+}) {
   return (
     <Wrapper>
-      <Button onClick={onLeftClick}>{leftText}</Button>
-      <Button onClick={onRightClick}>{rightText}</Button>
+      <Button
+        onClick={onLeftClick}
+        width={width}
+        height={height}
+        fontSize={fontSize}
+      >
+        {leftText}
+      </Button>
+      <Button
+        onClick={onRightClick}
+        disabled={disabledRight}
+        width={width}
+        height={height}
+        fontSize={fontSize}
+      >
+        {rightText}
+      </Button>
     </Wrapper>
-  )
+  );
 }

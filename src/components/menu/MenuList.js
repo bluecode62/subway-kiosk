@@ -6,7 +6,6 @@ import { menuData } from "../../data/menuData";
 import MenuItem from "./MenuItem";
 import ToppingModal from "../common/ToppingModal";
 import { resetSandwich, setStep } from "../../store/orderSlice";
-import CartBar from "../cart/CartBar";
 
 const ListContainer = styled.div`
   flex: 1;
@@ -16,10 +15,6 @@ const ListContainer = styled.div`
   gap: 20px;
 `;
 
-const GridWrapper = styled.div`
-  height: 450px;
-`;
-
 const Grid = styled.div`
   width: 100%;
   height: 100%;
@@ -27,7 +22,6 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 240px);
   justify-content: center;
   justify-items: center;
-  align-items: center;
   align-content: start;
   gap: 20px;
 `;
@@ -36,7 +30,6 @@ const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 100px;
 `;
 
 const NavButton = styled.button`
@@ -72,7 +65,6 @@ export default function MenuList() {
   const step = useSelector((state) => state.order.step);
   const menus = menuData[category] || [];
   const [warning, setWarning] = useState("");
-  const cart = useSelector((state) => state.order.cart);
 
   const size = useSelector((state) => state.order.size);
   const bread = useSelector((state) => state.order.bread);
@@ -142,13 +134,13 @@ export default function MenuList() {
 
   return (
     <ListContainer>
-      <GridWrapper>
+
         <Grid>
           {currentMenus.map((menu) => (
             <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
           ))}
         </Grid>
-      </GridWrapper>
+
 
       <ButtonArea>
         <NavButton onClick={prevPage} disabled={currentPage === 0}>
@@ -185,7 +177,7 @@ export default function MenuList() {
         ></ToppingModal>
       )}
 
-      <CartBar cart={cart} />
+  
     </ListContainer>
   );
 }
