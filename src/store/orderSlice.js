@@ -166,8 +166,8 @@ const orderSlice = createSlice({
       state.drink = action.payload;
     },
 
-    addCart: (state, action) => {
-      state.cart.push(action.payload);
+    resetOrder: (state) => {
+      Object.assign(state, initialState);
     },
   },
 });
@@ -192,7 +192,7 @@ export const {
   decreaseQuantity,
   setSide,
   setDrink,
-  addCart,
+  resetOrder,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

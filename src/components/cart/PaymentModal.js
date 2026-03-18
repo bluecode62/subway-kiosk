@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MdSmartphone } from "react-icons/md";
 import { FaCreditCard } from "react-icons/fa";
 import OrderButtons from "../common/OrderButtons";
+import { useNavigate } from "react-router-dom";
 
 const Overlay = styled.div`
   position: fixed;
@@ -74,6 +75,7 @@ const PaymentButton = styled.button`
 `;
 
 export default function PaymentModal({ onCancel, onSelect }) {
+  const navigate = useNavigate();
   return (
     <Overlay>
       <ModalBox>
@@ -81,12 +83,12 @@ export default function PaymentModal({ onCancel, onSelect }) {
         <SmallText>현금결제는 카운터에서만 가능합니다</SmallText>
 
         <PaymentOptions>
-          <PaymentButton onClick={() => onSelect("pay")}>
+          <PaymentButton onClick={() => navigate("/paid")}>
             <MdSmartphone />
             페이결제
           </PaymentButton>
 
-          <PaymentButton onClick={() => onSelect("card")}>
+          <PaymentButton onClick={() => navigate("/paid")}>
             <FaCreditCard />
             카드결제
           </PaymentButton>
