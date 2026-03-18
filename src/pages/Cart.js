@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { decreaseQuantity, increaseQuantity } from "../store/orderSlice";
 import MenuHeader from "../components/Header/MenuHeader";
 import OrderButtons from "../components/common/OrderButtons";
 import { useNavigate } from "react-router-dom";
+import PaymentModal from "../components/cart/PaymentModal";
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -128,6 +129,7 @@ export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.order.cart);
   const orderType = useSelector((state) => state.order.orderType);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -138,6 +140,10 @@ export default function Cart() {
 
   const handlePrev = () => {
     navigate(-1);
+  };
+
+  const handlePaymentSelect = (method) => {
+    setModalOpen(false);
   };
 
   return (
@@ -216,8 +222,16 @@ export default function Cart() {
             variant="left"
             rightText="결제하기"
             onLeftClick={handlePrev}
+            onRightClick={() => setModalOpen(true)}
           />
         </Footer>
+
+        {modalOpen && (
+          <PaymentModal
+            onCancel={() => setModalOpen(false)}
+            onSelect={handlePaymentSelect}
+          />
+        )}
       </Container>
     </Wrapper>
   );

@@ -13,9 +13,11 @@ const Button = styled.button`
   height: ${(props) => props.height || "70px"};
   border-radius: 50px;
   border: none;
-  background: ${(props) => props.variant === "left" ? "transparent" : "#009223;"};
-  color: ${(props) => props.variant === "left" ? "#292929" : "#fff"};
-  border: ${(props) => props.variant === "left" ? "2px solid #009223" : "none"};
+  background: ${(props) =>
+    props.variant === "left" ? "transparent" : "#009223;"};
+  color: ${(props) => (props.variant === "left" ? "#292929" : "#fff")};
+  border: ${(props) =>
+    props.variant === "left" ? "2px solid #009223" : "none"};
   font-size: ${(props) => props.fontSize || "30px"};
   font-weight: 600;
   cursor: pointer;
@@ -30,6 +32,7 @@ export default function OrderButtons({
   width,
   height,
   fontSize,
+  single = false,
 }) {
   return (
     <Wrapper>
@@ -42,15 +45,18 @@ export default function OrderButtons({
       >
         {leftText}
       </Button>
-      <Button
-        onClick={onRightClick}
-        disabled={disabledRight}
-        width={width}
-        height={height}
-        fontSize={fontSize}
-      >
-        {rightText}
-      </Button>
+
+      {!single && (
+        <Button
+          onClick={onRightClick}
+          disabled={disabledRight}
+          width={width}
+          height={height}
+          fontSize={fontSize}
+        >
+          {rightText}
+        </Button>
+      )}
     </Wrapper>
   );
 }
