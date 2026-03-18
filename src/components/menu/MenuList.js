@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -35,6 +35,18 @@ const Grid = styled.div`
   justify-content: center;
   justify-items: center;
   gap: 20px;
+`;
+
+const ScrollGrid = styled.div`
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ButtonArea = styled.div`
@@ -83,6 +95,28 @@ export default function MenuList() {
   const cheese = useSelector((state) => state.order.cheese);
   const vegetables = useSelector((state) => state.order.vegetables);
   const sauce = useSelector((state) => state.order.sauce);
+
+  const scrollRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  const onMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeft(scrollRef.current.scrollLeft);
+  };
+
+  const onMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = x - startX;
+    scrollRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const onMouseUp = () => setIsDragging(false);
+  const onMouseLeave = () => setIsDragging(false);
 
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -173,9 +207,9 @@ export default function MenuList() {
     <ListContainer>
       <MenuListWrapper>
         <Grid>
-          {currentMenus.map((menu) => (
-            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-          ))}
+            {currentMenus.map((menu) => (
+              <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
+            ))}
         </Grid>
 
         <ButtonArea>
