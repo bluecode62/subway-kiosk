@@ -95,10 +95,11 @@ const orderSlice = createSlice({
       if (!state.bread || !state.cheese || !state.menu) return;
 
       const newSandwich = {
-        id: state.menu?.id,
+        id: `${state.menu.id} -${Date.now()}`,
         name: state.menu?.name,
         image: state.menu?.image,
         price: state.menu?.price,
+        size: state.size,
         bread: state.bread,
         cheese: state.cheese,
         vegetables: [...state.vegetables],

@@ -13,8 +13,9 @@ const Button = styled.button`
   height: ${(props) => props.height || "70px"};
   border-radius: 50px;
   border: none;
-  background: #009223;
-  color: #fff;
+  background: ${(props) => props.variant === "left" ? "transparent" : "#009223;"};
+  color: ${(props) => props.variant === "left" ? "#292929" : "#fff"};
+  border: ${(props) => props.variant === "left" ? "2px solid #009223" : "none"};
   font-size: ${(props) => props.fontSize || "30px"};
   font-weight: 600;
   cursor: pointer;
@@ -34,6 +35,7 @@ export default function OrderButtons({
     <Wrapper>
       <Button
         onClick={onLeftClick}
+        variant="left"
         width={width}
         height={height}
         fontSize={fontSize}

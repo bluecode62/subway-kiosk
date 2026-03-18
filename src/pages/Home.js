@@ -31,7 +31,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  margin-bottom: 20px;
+  margin-top: 10px;
 `;
 
 const Logo = styled.img`
@@ -41,9 +41,9 @@ const Logo = styled.img`
 const MenuGrid = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(400px, 1fr));
+  grid-template-columns: repeat(2, minmax(300px, 1fr));
   justify-content: center;
-  gap: 50px;
+  gap: 40px;
 `;
 
 const IconBox = styled.div`

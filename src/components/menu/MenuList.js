@@ -24,7 +24,7 @@ const ListContainer = styled.div`
 const MenuListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 560px;
+  min-height: 560px;
 `;
 
 const Grid = styled.div`
@@ -34,7 +34,6 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 250px);
   justify-content: center;
   justify-items: center;
-  align-content: start;
   gap: 20px;
 `;
 
@@ -42,8 +41,7 @@ const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
-  margin-top:20px;
+  margin-top: 50px;
 `;
 
 const NavButton = styled.button`

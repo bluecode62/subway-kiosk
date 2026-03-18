@@ -9,14 +9,22 @@ const HeaderWrapper = styled.div`
   background: #e3efe8;
 `;
 
+const InlineRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  padding: 30px 0;
+  width: 100%;
+`;
+
 const TopArea = styled.div`
   display: flex;
 `;
 
 const RightBox = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: ${(props) => (props.$inline ? "row" : "column")};
+  align-items: ${(props) => (props.$inline ? "center" : "flex-start")};
   padding: 0 20px;
   flex: 1;
   border-bottom: 1px solid #bbbbbb;
@@ -64,7 +72,11 @@ const MenuTitle = styled.h2`
   color: #292929;
 `;
 
-export default function MenuHeader() {
+export default function MenuHeader({
+  title,
+  showLogo = true,
+  orderTypePosition = "top",
+}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -78,30 +90,56 @@ export default function MenuHeader() {
     drink: "음료",
   };
 
+  const displayTitle = title || categoryTitle[category];
+
   return (
     <HeaderWrapper>
       <TopArea>
-        <LogoBox onClick={() => navigate("/")}>
-          <Logo src="/images/logo_header.png" />
-        </LogoBox>
+        {showLogo && (
+          <LogoBox onClick={() => navigate("/")}>
+            <Logo src="/images/logo_header.png" />
+          </LogoBox>
+        )}
 
-        <RightBox>
-          <OrderTypeBox>
-            <OrderButton
-              active={orderType === "store"}
-              onClick={() => dispatch(setOrderType("store"))}
-            >
-              매장 식사
-            </OrderButton>
-            <OrderButton
-              active={orderType === "takeout"}
-              onClick={() => dispatch(setOrderType("takeout"))}
-            >
-              포장 주문
-            </OrderButton>
-          </OrderTypeBox>
+        <RightBox $inline={orderTypePosition === "inline"}>
+          {orderTypePosition === "inline" ? (
+            <InlineRow>
+              <MenuTitle>{displayTitle}</MenuTitle>
 
-          <MenuTitle>{categoryTitle[category]}</MenuTitle>
+              <OrderTypeBox>
+                <OrderButton
+                  active={orderType === "store"}
+                  onClick={() => dispatch(setOrderType("store"))}
+                >
+                  매장 식사
+                </OrderButton>
+                <OrderButton
+                  active={orderType === "takeout"}
+                  onClick={() => dispatch(setOrderType("takeout"))}
+                >
+                  포장 주문
+                </OrderButton>
+              </OrderTypeBox>
+            </InlineRow>
+          ) : (
+            <>
+              <OrderTypeBox>
+                <OrderButton
+                  active={orderType === "store"}
+                  onClick={() => dispatch(setOrderType("store"))}
+                >
+                  매장 식사
+                </OrderButton>
+                <OrderButton
+                  active={orderType === "takeout"}
+                  onClick={() => dispatch(setOrderType("takeout"))}
+                >
+                  포장 주문
+                </OrderButton>
+              </OrderTypeBox>
+              <MenuTitle>{displayTitle}</MenuTitle>
+            </>
+          )}
         </RightBox>
       </TopArea>
     </HeaderWrapper>

@@ -226,11 +226,7 @@ export default function CartBar() {
   };
 
   const handleNext = () => {
-    if (cart.length === 0) {
-      alert("메뉴를 먼저 골라주세요!");
-      return;
-    }
-    navigate("/order");
+    navigate("/cart");
   };
 
   const handlePrev = () => {
@@ -290,7 +286,7 @@ export default function CartBar() {
           width="180px"
           height="50px"
           fontSize="22px"
-          disabledRight={false}
+          disabledRight={cart.length === 0}
         />
       </CartButtonsWrapper>
     </CartWrapper>
