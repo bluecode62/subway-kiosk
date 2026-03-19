@@ -26,27 +26,33 @@ const MenuListWrapper = styled.div`
   flex-direction: column;
   min-height: 560px;
 `;
-
-const Grid = styled.div`
+const Viewport = styled.div`
   width: 100%;
-  height: 500px;
-  display: grid;
-  grid-template-columns: repeat(3, 250px);
-  justify-content: center;
-  justify-items: center;
-  gap: 20px;
-`;
-
-const ScrollGrid = styled.div`
-  display: flex;
-  gap: 20px;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: 10px;
+  overflow-y: hidden;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 
   &::-webkit-scrollbar {
     display: none;
   }
+`;
+
+const ScrollGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+`;
+
+const Page = styled.div`
+  flex: 0 0 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  align-content: start;
+  gap: 20px;
+  scroll-snap-align: start;
 `;
 
 const ButtonArea = styled.div`
@@ -54,6 +60,7 @@ const ButtonArea = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 50px;
+  width: 100%;
 `;
 
 const NavButton = styled.button`
@@ -115,7 +122,15 @@ export default function MenuList() {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
-  const onMouseUp = () => setIsDragging(false);
+  const onMouseUp = () => {
+    setIsDragging(false);
+
+    const width = scrollRef.current.clientWidth;
+    const scrollLeft = scrollRef.current.scrollLeft;
+
+    const newPage = Math.round(scrollLeft / width);
+    setCurrentPage(newPage);
+  };
   const onMouseLeave = () => setIsDragging(false);
 
   const [currentPage, setCurrentPage] = useState(0);
@@ -203,14 +218,54 @@ export default function MenuList() {
     }
   }, [size, bread, cheese]);
 
+  useEffect(() => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({
+        left: width * currentPage,
+        behavior: "smooth",
+      });
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [menus.length]);
+
   return (
     <ListContainer>
       <MenuListWrapper>
-        <Grid>
-            {currentMenus.map((menu) => (
-              <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-            ))}
-        </Grid>
+        <Viewport
+          ref={scrollRef}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseLeave}
+        >
+          <ScrollGrid>
+            {Array.from({ length: totalPages }).map((_, pageIndex) => {
+              const start = pageIndex * pageSize;
+              const pageMenus = menus.slice(start, start + pageSize);
+
+              return (
+                <Page key={pageIndex}>
+                  {pageMenus.map((menu) => (
+                    <MenuItem
+                      key={menu.id}
+                      menu={menu}
+                      onClick={handleMenuClick}
+                    />
+                  ))}
+                </Page>
+              );
+            })}
+          </ScrollGrid>
+        </Viewport>
+        {/* <Grid>
+          {currentMenus.map((menu) => (
+            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
+          ))}
+        </Grid> */}
 
         <ButtonArea>
           <NavButton onClick={prevPage} disabled={currentPage === 0}>
@@ -218,7 +273,7 @@ export default function MenuList() {
             이전
           </NavButton>
 
-          <IndicatorArea>
+          <IndicatorArea key={category}>
             {Array.from({ length: totalPages }).map((_, index) => (
               <Dot
                 key={index}
