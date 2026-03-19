@@ -64,7 +64,7 @@ const Grid = styled.div`
 const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  margin: 10px 0;
   align-items: center;
 `;
 
@@ -144,9 +144,6 @@ export default function MenuList() {
 
   const pageSize = 9;
   const totalPages = Math.ceil(menus.length / pageSize);
-
-  const start = currentPage * pageSize;
-  const currentMenus = menus.slice(start, start + pageSize);
 
   const nextPage = () => {
     if (currentPage < totalPages - 1) {
@@ -268,11 +265,6 @@ export default function MenuList() {
             })}
           </ScrollGrid>
         </Viewport>
-        {/* <Grid>
-          {currentMenus.map((menu) => (
-            <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
-          ))}
-        </Grid> */}
       </MenuListWrapper>
 
       <ButtonArea>
