@@ -15,10 +15,10 @@ import {
 } from "../../store/orderSlice";
 
 const ListContainer = styled.div`
-  flex: 1;
+  width: 1000px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const MenuListWrapper = styled.div`
@@ -30,7 +30,6 @@ const Viewport = styled.div`
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-
   scrollbar-width: none;
   -ms-overflow-style: none;
 
@@ -44,23 +43,29 @@ const ScrollGrid = styled.div`
   flex-direction: row;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  width: 100%;
 `;
 
 const Page = styled.div`
   flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  scroll-snap-align: start;
+`;
+
+const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 250px);
-  align-content: start;
   gap: 20px;
-  scroll-snap-align: start;
+  justify-items: center;
 `;
 
 const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   align-items: center;
-  margin-top: 50px;
-  width: 100%;
 `;
 
 const NavButton = styled.button`
@@ -118,7 +123,7 @@ export default function MenuList() {
     if (!isDragging) return;
     e.preventDefault();
     const x = e.pageX - scrollRef.current.offsetLeft;
-    const walk = x - startX;
+    const walk = (x - startX) * 2;
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
@@ -128,7 +133,7 @@ export default function MenuList() {
     const width = scrollRef.current.clientWidth;
     const scrollLeft = scrollRef.current.scrollLeft;
 
-    const newPage = Math.round(scrollLeft / width);
+    const newPage = Math.round(scrollLeft / width + 0.2);
     setCurrentPage(newPage);
   };
   const onMouseLeave = () => setIsDragging(false);
@@ -249,13 +254,15 @@ export default function MenuList() {
 
               return (
                 <Page key={pageIndex}>
-                  {pageMenus.map((menu) => (
-                    <MenuItem
-                      key={menu.id}
-                      menu={menu}
-                      onClick={handleMenuClick}
-                    />
-                  ))}
+                  <Grid>
+                    {pageMenus.map((menu) => (
+                      <MenuItem
+                        key={menu.id}
+                        menu={menu}
+                        onClick={handleMenuClick}
+                      />
+                    ))}
+                  </Grid>
                 </Page>
               );
             })}
@@ -266,32 +273,29 @@ export default function MenuList() {
             <MenuItem key={menu.id} menu={menu} onClick={handleMenuClick} />
           ))}
         </Grid> */}
-
-        <ButtonArea>
-          <NavButton onClick={prevPage} disabled={currentPage === 0}>
-            <FaChevronLeft />
-            이전
-          </NavButton>
-
-          <IndicatorArea key={category}>
-            {Array.from({ length: totalPages }).map((_, index) => (
-              <Dot
-                key={index}
-                active={index === currentPage}
-                onClick={() => setCurrentPage(index)}
-              />
-            ))}
-          </IndicatorArea>
-
-          <NavButton
-            onClick={nextPage}
-            disabled={currentPage === totalPages - 1}
-          >
-            다음
-            <FaChevronRight />
-          </NavButton>
-        </ButtonArea>
       </MenuListWrapper>
+
+      <ButtonArea>
+        <NavButton onClick={prevPage} disabled={currentPage === 0}>
+          <FaChevronLeft />
+          이전
+        </NavButton>
+
+        <IndicatorArea key={category}>
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <Dot
+              key={index}
+              active={index === currentPage}
+              onClick={() => setCurrentPage(index)}
+            />
+          ))}
+        </IndicatorArea>
+
+        <NavButton onClick={nextPage} disabled={currentPage === totalPages - 1}>
+          다음
+          <FaChevronRight />
+        </NavButton>
+      </ButtonArea>
 
       {modalOpen && (
         <ToppingModal

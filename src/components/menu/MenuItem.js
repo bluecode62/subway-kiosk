@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Card = styled.div`
-  width: 150px;
-  height: 160px;
+  width: 160px;
+  height: 170px;
   text-align: center;
   cursor: pointer;
   display: flex;
