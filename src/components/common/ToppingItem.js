@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Card = styled.div`
   width: 180px;
-  height: 155px;
+  height: 150px;
   cursor: pointer;
   border: 1px solid #dddddd;
   border-radius: 10px;

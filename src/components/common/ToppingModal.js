@@ -17,9 +17,9 @@ const Overlay = styled.div`
 `;
 
 const ModalBox = styled.div`
-  width: 90%;
+  width: 95%;
   max-width: 1200px;
-  height: 90vh;
+  height: 95vh;
   background: #fff;
   border-radius: 10px;
   display: flex;

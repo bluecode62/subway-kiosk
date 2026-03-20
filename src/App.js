@@ -8,12 +8,14 @@ import Paid from "./pages/Paid";
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/paid" element={<Paid />} />
-      </Routes>
+      <div className="kiosk">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/paid" element={<Paid />} />
+        </Routes>
+      </div>
     </div>
   );
 }

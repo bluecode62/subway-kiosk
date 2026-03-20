@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import PaymentModal from "../components/cart/PaymentModal";
 
 const Wrapper = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: #cfd8d3;
   display: flex;
