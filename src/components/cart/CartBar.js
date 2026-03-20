@@ -167,8 +167,8 @@ const CartSummary = styled.div`
 
 export default function CartBar() {
   const navigate = useNavigate();
-  const scrollRef = useRef(null);
   const dispatch = useDispatch();
+  const scrollRef = useRef(null);
   const cart = useSelector((state) => state.order.cart) || [];
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,

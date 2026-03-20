@@ -95,7 +95,7 @@ const orderSlice = createSlice({
       if (!state.bread || !state.cheese || !state.menu) return;
 
       const newSandwich = {
-        id: `${state.menu.id} -${Date.now()}`,
+        id: state.menu.id,
         name: state.menu?.name,
         image: state.menu?.image,
         price: state.menu?.price,
@@ -107,11 +107,17 @@ const orderSlice = createSlice({
         quantity: 1,
       };
 
+      const generateKey = (item) => {
+        return `${item.id}-${item.size}-${item.bread?.id}-${item.cheese?.id}-${JSON.stringify(item.vegetables)}-${JSON.stringify(item.sauce)}`;
+      }
+
+      const newKey = generateKey(newSandwich);
+
       const existingItem = state.cart.find(
-        (item) => item.id === newSandwich.id
+        (item) => generateKey(item) === newKey
       );
 
-      if(existingItem) {
+      if (existingItem) {
         existingItem.quantity += 1;
       } else {
         state.cart.push(newSandwich);
@@ -138,7 +144,7 @@ const orderSlice = createSlice({
 
       const existingItem = state.cart.find((item) => item.id === newItem.id);
 
-      if(existingItem){
+      if (existingItem) {
         existingItem.quantity += 1;
       } else {
         state.cart.push(newItem);
