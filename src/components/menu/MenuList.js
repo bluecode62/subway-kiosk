@@ -24,7 +24,7 @@ const ListContainer = styled.div`
 const MenuListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 560px;
+  min-height: 500px;
 `;
 const Viewport = styled.div`
   width: 100%;

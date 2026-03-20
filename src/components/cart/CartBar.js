@@ -151,11 +151,6 @@ const QuantityWrapper = styled.div`
 `;
 
 const CartButtonsWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-shrink: 0;
 `;
 
 const CartSummary = styled.div`
