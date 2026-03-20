@@ -23,13 +23,13 @@ const orderSlice = createSlice({
       state.step = action.payload;
     },
 
-    nextStep: (state) => {
-      state.step += 1;
-    },
+    // nextStep: (state) => {
+    //   state.step += 1;
+    // },
 
-    prevStep: (state) => {
-      state.step -= 1;
-    },
+    // prevStep: (state) => {
+    //   state.step -= 1;
+    // },
 
     resetSandwich: (state) => {
       state.size = null;
@@ -39,12 +39,12 @@ const orderSlice = createSlice({
       state.sauce = [];
     },
 
-    resetTopping: (state) => {
-      state.bread = null;
-      state.cheese = null;
-      state.vegetables = [];
-      state.sauce = [];
-    },
+    // resetTopping: (state) => {
+    //   state.bread = null;
+    //   state.cheese = null;
+    //   state.vegetables = [];
+    //   state.sauce = [];
+    // },
 
     setMenu: (state, action) => {
       state.menu = action.payload;
@@ -168,9 +168,9 @@ const orderSlice = createSlice({
       state.side = action.payload;
     },
 
-    setDrink: (state, action) => {
-      state.drink = action.payload;
-    },
+    // setDrink: (state, action) => {
+    //   state.drink = action.payload;
+    // },
 
     resetOrder: (state) => {
       Object.assign(state, initialState);
@@ -180,8 +180,8 @@ const orderSlice = createSlice({
 
 export const {
   setStep,
-  nextStep,
-  prevStep,
+  // nextStep,
+  // prevStep,
   resetSandwich,
   resetTopping,
   setOrderType,
@@ -197,7 +197,7 @@ export const {
   increaseQuantity,
   decreaseQuantity,
   setSide,
-  setDrink,
+  // setDrink,
   resetOrder,
 } = orderSlice.actions;
 
