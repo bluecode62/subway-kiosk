@@ -48,5 +48,12 @@ React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케�
 <img width="673" height="581" alt="키오스크 메인화면 전역03" src="https://github.com/user-attachments/assets/2e9f60aa-2735-4fd7-9a5d-fcfcf872c29c" /><br>
 <img width="782" height="2631" alt="키오스크 카트화면 전역" src="https://github.com/user-attachments/assets/a0a12d7a-0be9-4abe-98b2-da6abe7d70cc" /><br>
 
+Redux Toolkit을 활용하여 주문 상태를 전역으로 관리하였습니다.  
+사용자의 선택을(주문 형태 → 메뉴 선택 → 장바구니 → 결제 완료) 하나의 상태 흐름으로 연결하였습니다.
 
+🎈 주문 형태 선택
+홈 화면에서 매장/포장 주문을 선택하면  
+해당 값이 전역 상태(orderType)에 저장됩니다.
+이후 메뉴화면 페이지 상단에 선택된 주문 형태가 표시됩니다.
+도중에 변경될 수 있음을 생각해 포장주문 누르면 상태가 변경되는 식으로 구현했습니다.
 
