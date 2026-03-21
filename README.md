@@ -38,7 +38,7 @@ React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케�
 <h1> 주문 상태 관리</h1>
 <img width="1018" height="765" alt="키오스크 전역상태01" src="https://github.com/user-attachments/assets/94caa040-a219-438c-b970-00adc98e355f" />
 <img width="1126" height="886" alt="키오스크 전역상태02" src="https://github.com/user-attachments/assets/7a6c0ace-8265-4d1e-a94f-786089a9d502" />
-<img width="1124" height="723" alt="키오스크 전역상태03" src="https://github.com/user-attachments/assets/7f761183-5885-4523-a553-3969e652a8e5" />
+<img width="1133" height="894" alt="키오스크 전역상태03" src="https://github.com/user-attachments/assets/25cd0c8d-ad6f-45e3-a83f-d9cdea93df04" />
 <img width="843" height="723" alt="키오스크 전역상태04" src="https://github.com/user-attachments/assets/7bc42462-1bbd-4d3e-8b16-2676307e4821" /><br>
 <img width="1124" height="899" alt="키오스크 전역상태05" src="https://github.com/user-attachments/assets/fec46875-f11a-4803-b839-fa433be8571c" />
 
