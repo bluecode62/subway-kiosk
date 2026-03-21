@@ -19,12 +19,13 @@ const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  padding: 0 30px;
 `;
 
 const MenuListWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  height: 560px;
 `;
 const Viewport = styled.div`
   width: 100%;
@@ -56,7 +57,7 @@ const Page = styled.div`
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 250px);
+  grid-template-columns: repeat(3, 300px);
   gap: 20px;
   justify-items: center;
 `;
@@ -64,7 +65,7 @@ const Grid = styled.div`
 const ButtonArea = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  margin-top: 10px;
   align-items: center;
 `;
 
