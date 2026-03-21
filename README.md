@@ -40,5 +40,13 @@ React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케�
 <img width="1126" height="886" alt="키오스크 전역상태02" src="https://github.com/user-attachments/assets/7a6c0ace-8265-4d1e-a94f-786089a9d502" />
 <img width="1133" height="894" alt="키오스크 전역상태03" src="https://github.com/user-attachments/assets/25cd0c8d-ad6f-45e3-a83f-d9cdea93df04" />
 <img width="843" height="723" alt="키오스크 전역상태04" src="https://github.com/user-attachments/assets/7bc42462-1bbd-4d3e-8b16-2676307e4821" /><br>
-<img width="1124" height="899" alt="키오스크 전역상태05" src="https://github.com/user-attachments/assets/fec46875-f11a-4803-b839-fa433be8571c" />
+<img width="1124" height="899" alt="키오스크 전역상태05" src="https://github.com/user-attachments/assets/fec46875-f11a-4803-b839-fa433be8571c" /><br>
+
+<img width="425" height="417" alt="키오스크 홈화면 전역" src="https://github.com/user-attachments/assets/fbae53b4-4802-48bd-847a-2b9a1204a3ef" /><br>
+<img width="671" height="748" alt="키오스크 메인화면 전역01" src="https://github.com/user-attachments/assets/ed478e15-192b-4087-be71-509e65b3bff1" /><br>
+<img width="685" height="2375" alt="키오스크 메인화면 전역02" src="https://github.com/user-attachments/assets/545c7da4-8a6d-4920-ad8f-f516417c10bb" /><br>
+<img width="673" height="581" alt="키오스크 메인화면 전역03" src="https://github.com/user-attachments/assets/2e9f60aa-2735-4fd7-9a5d-fcfcf872c29c" /><br>
+<img width="782" height="2631" alt="키오스크 카트화면 전역" src="https://github.com/user-attachments/assets/a0a12d7a-0be9-4abe-98b2-da6abe7d70cc" /><br>
+
+
 
