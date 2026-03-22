@@ -132,4 +132,26 @@ Redux Toolkit을 활용하여 주문 상태를 전역으로 관리하였습니�
 → 장바구니 페이지에서(Cart.js) 옵션 확인  
 
 
+<h5>🎈상태 구조 설계</h5>
+
+```javascript
+const initialState = {
+  step: 1,
+  menu: null,
+  size: null,
+  bread: null,
+  cheese: null,
+  vegetables: [],
+  sauce: [],
+  cart: [],
+};
+```
+size, bread, cheese (빵사이즈, 빵종류, 치즈)
+→ 하나만 선택해야 하므로 1개로 관리
+
+vegetables, sauce (야채토핑, 소스토핑)
+→ 여러 개 선택 가능하므로 배열로 관리
+
+장바구니(cart)
+→ 여러 메뉴 + 옵션 조합을 담아야 하므로 배열로 관리
 
