@@ -167,7 +167,11 @@ toggleVegetable: (state, action) => {
   }
 };
 ```
-→ 야채 토핑 같은 항목 클릭 시 선택/해제 토글
+```javascript
+toggleSauce: (state, action) => { const item = action.payload; const exists = state.sauce.find((v) => v.id === item.id); if (exists) { state.sauce = state.sauce.filter((v) => v.id !== item.id); } else { state.sauce.push(item); } },
+```
+
+→ 야채토핑/소스토핑 같은 항목 클릭 시 선택/해제 토글
 
 ```javascript
 saveMenuItem // 일반 메뉴 (음료, 사이드)
