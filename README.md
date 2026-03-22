@@ -101,12 +101,24 @@ Redux Toolkit을 활용하여 주문 상태를 전역으로 관리하였습니�
 <img width="1154" height="895" alt="샌드위치토핑03" src="https://github.com/user-attachments/assets/4c06dbd9-4f10-4362-a1d1-326c85393e66" />
 <img width="1132" height="893" alt="샌드위치토핑카트" src="https://github.com/user-attachments/assets/8f88d53f-3c8d-4664-8ab1-8afc90a8b951" />
 <img width="1124" height="258" alt="샌드위치카트페이지" src="https://github.com/user-attachments/assets/28dc4329-a2b5-4a9f-9f44-29bb0ba77e09" /><br>
-
+<br>
 <img width="1124" height="281" alt="토핑예외01" src="https://github.com/user-attachments/assets/1bcf4666-361e-4559-84cc-b1bb9bc577d8" />
 <img width="1114" height="597" alt="토핑예외02" src="https://github.com/user-attachments/assets/4bc269a2-5b7a-4738-b14f-37fb84116c07" />
 <img width="1114" height="671" alt="토핑예외03" src="https://github.com/user-attachments/assets/536c9e78-1d76-437a-b213-e757d5ccca98" />
 <img width="1114" height="686" alt="토핑예외04" src="https://github.com/user-attachments/assets/237351ac-8880-415c-993c-f29d19356061" />
 <img width="1114" height="843" alt="토핑예외05" src="https://github.com/user-attachments/assets/9db23292-ca28-4d9d-bc08-ce4f1afc5a74" /><br>
+
+<img width="724" height="786" alt="토핑데이터" src="https://github.com/user-attachments/assets/59fb76c8-e93f-41b2-8a32-08637d6e623c" />
+<img width="748" height="891" alt="토핑모달" src="https://github.com/user-attachments/assets/efac02d6-cd3d-407c-83b7-7583cc818460" />
+<img width="713" height="2089" alt="메뉴리스트 모달창 코드" src="https://github.com/user-attachments/assets/98904626-b9c0-4fc5-8a43-ccc51e83732e" />
+<img width="681" height="1237" alt="토핑스텝01 코드" src="https://github.com/user-attachments/assets/86e5a62b-4d2f-4801-8e02-2711290c8da6" />
+<img width="750" height="449" alt="토핑스텝02 코드" src="https://github.com/user-attachments/assets/a7c666a8-57d6-4951-86f0-b413da281462" />
+<img width="676" height="512" alt="토핑스텝03 코드" src="https://github.com/user-attachments/assets/c82a0b01-9fb9-4e4e-825b-ecf3cf2a85a2" /><br>
+
+<img width="699" height="775" alt="카트페이지 토핑코드" src="https://github.com/user-attachments/assets/b4c2f26a-e8f8-48cb-88e9-589978414b54" />
+<img width="853" height="2434" alt="샌드위치 스토어 구조" src="https://github.com/user-attachments/assets/23424727-648a-48b1-a8c2-0f2ac80c81bd" /><br>
+
+
 
 샌드위치 메뉴 선택 시 토핑을 직접 선택할 수 있는 모달을 구현하였습니다.  
 단계별로 토핑옵션을 선택하는 구조로 설계하여 실제 키오스크의 주문방식을 재현했습니다.
