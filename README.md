@@ -119,7 +119,6 @@ Redux Toolkit을 활용하여 주문 상태를 전역으로 관리하였습니�
 <img width="853" height="2434" alt="샌드위치 스토어 구조" src="https://github.com/user-attachments/assets/23424727-648a-48b1-a8c2-0f2ac80c81bd" /><br>
 
 
-
 샌드위치 메뉴 선택 시 토핑을 직접 선택할 수 있는 모달을 구현하였습니다.  
 단계별로 토핑옵션을 선택하는 구조로 설계하여 실제 키오스크의 주문방식을 재현했습니다.
 
