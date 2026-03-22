@@ -155,3 +155,33 @@ vegetables, sauce (야채토핑, 소스토핑)
 장바구니(cart)
 → 여러 메뉴 + 옵션 조합을 담아야 하므로 배열로 관리
 
+```javascript
+toggleVegetable: (state, action) => {
+  const item = action.payload;
+  const exists = state.vegetables.find((v) => v.id === item.id);
+
+  if (exists) {
+    state.vegetables = state.vegetables.filter((v) => v.id !== item.id);
+  } else {
+    state.vegetables.push(item);
+  }
+};
+```
+→ 야채 토핑 같은 항목 클릭 시 선택/해제 토글
+
+```javascript
+saveMenuItem // 일반 메뉴 (음료, 사이드)
+saveSandwich // 커스터마이징 메뉴
+```
+일반 메뉴: id 기준으로 수량 증가
+샌드위치: 옵션까지 포함해서 비교
+
+```javascript
+const isSandwich = item.bread && item.cheese;
+```
+샌드위치 → 빵사이즈,빵종류, 치즈, 야채토핑, 소스토핑 상세 표시
+일반 메뉴 → 이름만 표시
+
+<hr >
+
+<h1> 메뉴 선택 및 장바구니 담기</h1>
