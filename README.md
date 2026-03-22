@@ -96,3 +96,29 @@ Redux Toolkit을 활용하여 주문 상태를 전역으로 관리하였습니�
 <hr >
 
 <h1>샌드위치 커스터마이징</h1>
+<img width="1208" height="902" alt="샌드위치토핑01" src="https://github.com/user-attachments/assets/6bf879ec-f139-42c8-8378-53bdcf204666" />
+<img width="1180" height="895" alt="샌드위치토핑02" src="https://github.com/user-attachments/assets/2af7ea54-9f76-43a4-b312-55402ecf7d34" />
+<img width="1154" height="895" alt="샌드위치토핑03" src="https://github.com/user-attachments/assets/4c06dbd9-4f10-4362-a1d1-326c85393e66" />
+<img width="1132" height="893" alt="샌드위치토핑카트" src="https://github.com/user-attachments/assets/8f88d53f-3c8d-4664-8ab1-8afc90a8b951" />
+<img width="1124" height="258" alt="샌드위치카트페이지" src="https://github.com/user-attachments/assets/28dc4329-a2b5-4a9f-9f44-29bb0ba77e09" /><br>
+
+<img width="1124" height="281" alt="토핑예외01" src="https://github.com/user-attachments/assets/1bcf4666-361e-4559-84cc-b1bb9bc577d8" />
+<img width="1114" height="597" alt="토핑예외02" src="https://github.com/user-attachments/assets/4bc269a2-5b7a-4738-b14f-37fb84116c07" />
+<img width="1114" height="671" alt="토핑예외03" src="https://github.com/user-attachments/assets/536c9e78-1d76-437a-b213-e757d5ccca98" />
+<img width="1114" height="686" alt="토핑예외04" src="https://github.com/user-attachments/assets/237351ac-8880-415c-993c-f29d19356061" />
+<img width="1114" height="843" alt="토핑예외05" src="https://github.com/user-attachments/assets/9db23292-ca28-4d9d-bc08-ce4f1afc5a74" /><br>
+
+샌드위치 메뉴 선택 시 토핑을 직접 선택할 수 있는 모달을 구현하였습니다.  
+단계별로 토핑옵션을 선택하는 구조로 설계하여 실제 키오스크의 주문방식을 재현했습니다.
+
+<h5>💡전체 흐름</h5>
+
+샌드위치 선택  
+→ 토핑 모달 실행  
+→ 단계별 토핑옵션 선택  
+→ 유효성 검사  
+→ 장바구니 저장  
+→ 장바구니 페이지에서(Cart.js) 옵션 확인  
+
+
+
