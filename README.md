@@ -201,8 +201,11 @@ const isSandwich = item.bread && item.cheese;
 <h1> 메뉴 장바구니 담기 및 수량조절</h1>
 
 <img width="1134" height="891" alt="장바구니 수량" src="https://github.com/user-attachments/assets/085ea843-faa4-4928-aa52-84ab689ed242" />
-<img width="501" height="891" alt="장바구니 수량02" src="https://github.com/user-attachments/assets/d33b050c-c4c0-41f3-820e-0ccc64b15f53" />
-<img width="1116" height="801" alt="장바구니 수량03" src="https://github.com/user-attachments/assets/d08ca7b9-a3a7-437d-a853-32799be2b3ba" /><br>
+<img width="440" height="901" alt="장바구니 수량02" src="https://github.com/user-attachments/assets/a0af8105-2fe5-46d6-8be7-c6bdee7ae597" />
+<img width="1116" height="801" alt="장바구니 수량03" src="https://github.com/user-attachments/assets/93dbbcc2-0caa-41cc-8963-7edc19bcef2d" /><br>
 
+<img width="854" height="3428" alt="수량조절 코드" src="https://github.com/user-attachments/assets/ef4bb809-74f5-451a-9cf0-5c64df5e2be6" />
+
+<h5>💡전체 흐름</h5>
 
 
