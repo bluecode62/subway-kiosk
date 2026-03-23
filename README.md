@@ -272,4 +272,79 @@ decreaseQuantity: (state, action) => {
 
 <hr >
 
-<h1>동일 옵션 상품 병합 처리/h1>
+<h1>동일 옵션 메뉴 병합 처리/h1>
+
+<img width="647" height="729" alt="동일메뉴01" src="https://github.com/user-attachments/assets/e5ef3ad5-5429-4b1a-9359-5bbbfaaa34bb" />
+<img width="649" height="633" alt="동일메뉴02" src="https://github.com/user-attachments/assets/1e9769f9-0ed9-49c8-b71b-67fed84f6c23" />
+<img width="715" height="236" alt="동일메뉴03" src="https://github.com/user-attachments/assets/7e768d05-3098-40db-b817-fea3696d61f6" />
+<img width="607" height="602" alt="동일메뉴04" src="https://github.com/user-attachments/assets/c20f6339-4a3d-4181-9e27-9a1d52bb4c10" />
+<img width="654" height="626" alt="동일메뉴05" src="https://github.com/user-attachments/assets/6c144121-5311-47ab-928d-2d410ce04585" />
+<img width="714" height="233" alt="동일메뉴06" src="https://github.com/user-attachments/assets/c020a528-2657-476a-bec8-ea3a3f48499d" />
+<img width="1123" height="413" alt="동일메뉴07" src="https://github.com/user-attachments/assets/88598dee-d0bf-4f33-adc7-977c07dcd471" /><br>
+
+<img width="796" height="538" alt="샌드위치구별코드01" src="https://github.com/user-attachments/assets/ebc54b6f-5f6c-4ba1-bad3-2b8acd1c0879" />
+<img width="420" height="392" alt="샌드위치구별코드02" src="https://github.com/user-attachments/assets/28280c0a-4b93-4f27-ac40-4c6500ff85a9" /><br>
+
+샌드위치는 메뉴가 아닌 “옵션 조합” 기준으로 비교하여<br>
+동일 옵션은 수량증가, 다른 옵션은 별도 메뉴 추가로 처리했습니다.<br>
+
+<h5>💡전체 흐름</h5>
+샌드위치 메뉴 선택<br>
+→ 빵사이즈, 빵종류, 치즈, 야채, 소스 등 옵션 선택<br>
+: 선택 완료 시 newSandwich 객체 생성<br>
+
+```javascript
+const newSandwich = {
+  id: state.menu.id,
+  size: state.size,
+  bread: state.bread,
+  cheese: state.cheese,
+  vegetables: [...state.vegetables],
+  sauce: [...state.sauce],
+  quantity: 1,
+};
+```
+
+<h5>💡메뉴 구별키</h5>
+
+```javascript
+const generateKey = (item) => {
+  return `${item.id}-${item.size}-${item.bread?.id}-${item.cheese?.id}-${JSON.stringify(item.vegetables)}-${JSON.stringify(item.sauce)}`;
+}
+```
+👉 메뉴 ID + 선택한 모든 옵션을 문자열로 조합하여 구별키 생성<br>
+
+
+<h5>💡장바구니 흐름구조</h5>
+
+```javascript
+const newKey = generateKey(newSandwich);
+
+const existingItem = state.cart.find(
+  (item) => generateKey(item) === newKey
+);
+
+if (existingItem) {
+  existingItem.quantity += 1;
+} else {
+  state.cart.push(newSandwich);
+}
+```
+기존 장바구니와 비교(state.cart.find())<br>
+
+같은 key 존재(existingItem)<br>
+👉 수량 증가(existingItem.quantity += 1)<br>
+없으면<br>
+👉 새로운 메뉴 추가(state.cart.push(newSandwich)<br>
+
+🎈 같은 메뉴 + 같은 토핑<br>
+👉 하나의 항목으로 합쳐지고 수량만 증가<br>
+<br>
+🎈같은 메뉴 + 다른 토핑<br>
+👉 별도의 항목으로 추가<br>
+<br>
+장바구니 페이지에서는<br>
+👉 각 항목의 옵션(빵사이즈,빵종류, 치즈, 야채, 소스)을 모두 표시<br>
+
+
+🚀 트러블 슈팅
