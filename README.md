@@ -25,9 +25,10 @@ React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케�
   * 빵, 치즈, 야채, 소스를 단계별로 선택하는 구조
   * 선택 상태를 Redux로 관리하여 단계 이동 시 유지
 
-#### 3. 메뉴 선택 및 장바구니 담기 (Menu.js)
+#### 3. 메뉴 장바구니 담기 및 수량조절 (Menu.js)
   * 메뉴 클릭 시 장바구니에 즉시 추가
   * 동일한 메뉴는 수량 증가 방식으로 처리
+  * 장바구니 페이지에서 수량 조절기능 처리
 
 #### 4. 동일 옵션 상품 병합 처리 (Menu.js)
   * 메뉴 + 토핑 조합을 기준으로 고유 key 생성
@@ -197,4 +198,11 @@ const isSandwich = item.bread && item.cheese;
 
 <hr >
 
-<h1> 메뉴 선택 및 장바구니 담기</h1>
+<h1> 메뉴 장바구니 담기 및 수량조절</h1>
+
+<img width="1134" height="891" alt="장바구니 수량" src="https://github.com/user-attachments/assets/085ea843-faa4-4928-aa52-84ab689ed242" />
+<img width="501" height="891" alt="장바구니 수량02" src="https://github.com/user-attachments/assets/d33b050c-c4c0-41f3-820e-0ccc64b15f53" />
+<img width="1116" height="801" alt="장바구니 수량03" src="https://github.com/user-attachments/assets/d08ca7b9-a3a7-437d-a853-32799be2b3ba" /><br>
+
+
+
