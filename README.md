@@ -272,7 +272,7 @@ decreaseQuantity: (state, action) => {
 
 <hr >
 
-<h1>동일 옵션 메뉴 병합 처리/h1>
+<h1>동일 옵션 메뉴 병합 처리</h1>
 
 <img width="647" height="729" alt="동일메뉴01" src="https://github.com/user-attachments/assets/e5ef3ad5-5429-4b1a-9359-5bbbfaaa34bb" />
 <img width="649" height="633" alt="동일메뉴02" src="https://github.com/user-attachments/assets/1e9769f9-0ed9-49c8-b71b-67fed84f6c23" />
