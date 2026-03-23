@@ -216,7 +216,7 @@ const isSandwich = item.bread && item.cheese;
 → 수량 조절 <br>
 → 0이면 삭제<br>
 
-<h5>🎈수량증가 구조</h5>
+<h5>🎈장바구니 담기 구조</h5>
 
 ```javascript
 saveMenuItem: (state, action) => {
@@ -242,5 +242,34 @@ saveMenuItem: (state, action) => {
 ```
 메뉴 클릭 시:
 
-기존에 같은 메뉴가 있으면 → 수량 증가(quantity += 1)<br>
-없으면 → 새로 장바구니에 메뉴 추가(push(newItem))<br>
+기존에 같은 메뉴가 있으면 → 수량 증가(existingItem.quantity += 1)<br>
+없으면 → 새로 장바구니에 메뉴 추가(state.cart.push(newItem))<br>
+👉중복 상품을 하나의 항목으로 관리<br>
+
+<h5>수량 조절 기능</h5>
+
+```javascript
+increaseQuantity: (state, action) => {
+  const index = action.payload;
+  if (state.cart[index]) state.cart[index].quantity += 1;
+},
+
+decreaseQuantity: (state, action) => {
+  const index = action.payload;
+  if (state.cart[index] && state.cart[index].quantity > 1) {
+    state.cart[index].quantity -= 1;
+  } else if (state.cart[index]) {
+    state.cart.splice(index, 1);
+  }
+}
+```
++ 버튼 → 수량 증가(state.cart[index].quantity += 1)<br>
+- 버튼 → 수량 감소(state.cart[index].quantity -= 1)<br>
+수량이 1에서 감소 시 → 장바구니에서 제거(splice(index,1))<br>
+
+수량이 0이 되는 경우 장바구니에서 제거되도록 처리하였습니다.<br>
+
+
+<hr >
+
+<h1>동일 옵션 상품 병합 처리/h1>
