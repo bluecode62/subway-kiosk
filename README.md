@@ -216,3 +216,31 @@ const isSandwich = item.bread && item.cheese;
 → 수량 조절 <br>
 → 0이면 삭제<br>
 
+<h5>🎈수량증가 구조</h5>
+
+```javascript
+saveMenuItem: (state, action) => {
+  const menu = action.payload;
+  if (!menu) return;
+
+  const newItem = {
+    id: menu.id + '-' + state.category,
+    name: menu.name,
+    image: menu.image,
+    price: menu.price || 0,
+    quantity: 1,
+  };
+
+  const existingItem = state.cart.find((item) => item.id === newItem.id);
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    state.cart.push(newItem);
+  }
+}
+```
+메뉴 클릭 시:
+
+기존에 같은 메뉴가 있으면 → 수량 증가
+없으면 → 새로 장바구니에 메뉴 추가
