@@ -204,8 +204,15 @@ const isSandwich = item.bread && item.cheese;
 <img width="440" height="901" alt="장바구니 수량02" src="https://github.com/user-attachments/assets/a0af8105-2fe5-46d6-8be7-c6bdee7ae597" />
 <img width="1116" height="801" alt="장바구니 수량03" src="https://github.com/user-attachments/assets/93dbbcc2-0caa-41cc-8963-7edc19bcef2d" /><br>
 
-<img width="854" height="3428" alt="수량조절 코드" src="https://github.com/user-attachments/assets/ef4bb809-74f5-451a-9cf0-5c64df5e2be6" />
+<img width="854" height="3428" alt="수량조절 코드" src="https://github.com/user-attachments/assets/ef4bb809-74f5-451a-9cf0-5c64df5e2be6" /><br>
+
+메뉴 클릭 시 장바구니에 상품이 추가되며,
+동일한 메뉴를 다시 선택하면 새로 추가되지 않고 수량이 증가하도록 구현했습니다.
 
 <h5>💡전체 흐름</h5>
-
+메뉴 선택 
+→ 장바구니 추가 
+→ 동일 메뉴 수량 병합 
+→ 수량 조절 
+→ 0이면 삭제
 
