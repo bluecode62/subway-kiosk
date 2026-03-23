@@ -244,7 +244,7 @@ saveMenuItem: (state, action) => {
 
 기존에 같은 메뉴가 있으면 → 수량 증가(existingItem.quantity += 1)<br>
 없으면 → 새로 장바구니에 메뉴 추가(state.cart.push(newItem))<br>
-👉중복 상품을 하나의 항목으로 관리<br>
+👉중복 상품을 하나의 메뉴로 관리<br>
 
 <h5>수량 조절 기능</h5>
 
