@@ -89,7 +89,7 @@ export default function Paid() {
         )}
         <CompleteButton onClick={handleComplete}>완료</CompleteButton>
       </TextContainer>
-      <SandwichHalf src="/images/paid.png" />
+      <SandwichHalf src={`${process.env.PUBLIC_URL}/images/paid.png`} />
     </Wrapper>
   );
 }

@@ -97,7 +97,7 @@ export default function MenuHeader({
       <TopArea>
         {showLogo && (
           <LogoBox onClick={() => navigate("/")}>
-            <Logo src="process.env.PUBLIC_URL + /images/logo_header.png" />
+            <Logo src={`${process.env.PUBLIC_URL}/images/logo_header.png`}  />
           </LogoBox>
         )}
 

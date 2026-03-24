@@ -10,7 +10,7 @@ const CartWrapper = styled.div`
   height: 250px;
   border-top: 1px solid #ddd;
   background: #e3efe8;
-  overflow: hidden;
+  // overflow: hidden;
 `;
 
 const CartTitleWrapper = styled.div`

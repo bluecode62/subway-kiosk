@@ -89,7 +89,7 @@ export default function Home() {
     <Wrapper>
       <Container>
         <Header>
-          <Logo src="/images/logo_big.png" />
+        <Logo src={`${process.env.PUBLIC_URL}/images/logo_big.png`} />
         </Header>
         <MenuGrid>
           <MenuCard>
