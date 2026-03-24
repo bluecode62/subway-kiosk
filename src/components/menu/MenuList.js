@@ -113,6 +113,8 @@ export default function MenuList() {
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
   const [scrollLeft, setScrollLeft] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const onMouseDown = (e) => {
     setIsDragging(true);
@@ -137,11 +139,9 @@ export default function MenuList() {
     const newPage = Math.round(scrollLeft / width + 0.2);
     setCurrentPage(newPage);
   };
+  
   const onMouseLeave = () => setIsDragging(false);
 
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const [modalOpen, setModalOpen] = useState(false);
 
   const pageSize = 9;
   const totalPages = Math.ceil(menus.length / pageSize);
@@ -157,6 +157,20 @@ export default function MenuList() {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const width = scrollRef.current.clientWidth;
+      scrollRef.current.scrollTo({
+        left: width * currentPage,
+        behavior: "smooth",
+      });
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [menus.length]);
 
   useEffect(() => {
     dispatch(setMenu(null));
@@ -220,20 +234,6 @@ export default function MenuList() {
       setWarning("");
     }
   }, [size, bread, cheese]);
-
-  useEffect(() => {
-    if (scrollRef.current) {
-      const width = scrollRef.current.clientWidth;
-      scrollRef.current.scrollTo({
-        left: width * currentPage,
-        behavior: "smooth",
-      });
-    }
-  }, [currentPage]);
-
-  useEffect(() => {
-    setCurrentPage(0);
-  }, [menus.length]);
 
   return (
     <ListContainer>
