@@ -1,4 +1,4 @@
-# 🥪 써브웨이 키오스크 (개인)
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/7ed0f857-f79b-4de0-b620-91aa07f4ffd2" /># 🥪 써브웨이 키오스크 (개인)
 : React 기반으로 제작한 써브웨이 키오스크입니다. 
 React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케이션입니다.  
 샌드위치 옵션 선택, 장바구니 관리, 동일 옵션 상품 병합 로직 등을 구현하며 실제 키오스크의 주문식으로 구현했습니다.
@@ -348,3 +348,166 @@ if (existingItem) {
 
 
 🚀 트러블 슈팅
+1️⃣가로 스크롤 슬라이드 UI 구현<br>
+* 메뉴 리스트를 가로로 넘기는 슬라이드 UI 구현 중 다음 문제가 발생<br>
+* 페이지 간 여백이 비정상적으로 넓어짐<br>
+* 메뉴 아이템이 한쪽으로 치우쳐 보임<br>
+* 일부 페이지에서는 메뉴가 한 줄로 길게 나열됨<br>
+* 드래그 후 페이지 위치가 어긋나는 현상 발생<br>
+👉레이아웃  + 스크롤 계산이 동시에 꼬인 상태가 원인임을 알게 되었습니다.<br>
+
+🎈Page 정렬 방식 수정
+```javascript
+const Page = styled.div`
+  flex: 0 0 100%;
+  display: flex;
+  align-items: flex-start; //왼족 정렬
+  scroll-snap-align: start; // 왼쪽 시작
+`;
+```
+👉 페이지 기준을 왼쪽 정렬로 통일
+
+🎈Grid 정렬 방식 수정
+```javascript
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 20px;
+  justify-content: start; //메뉴 아이템 정렬
+`;
+```
+👉 Grid는 내부에서만 정렬, Page와 역할 분리
+
+🎈scroll-snap 기준 통일
+```javascript
+scroll-snap-align: start;
+```
+👉 모든 페이지 시작 기준을 동일하게 맞춤
+
+```javascript
+const onMouseMove = (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+
+  const x = e.pageX - scrollRef.current.offsetLeft; //마우스 X 좌 위치
+  const walk = (x - startX) * 2; //마우스 이동거(오른쪽:양수, 왼쪽:음수)
+
+  scrollRef.current.scrollLeft = scrollLeft - walk;
+  //(드래그 시작 시점의 스크롤 위치 - 마우스 이동거리)
+  //= 오른쪽 드래그 → scrollLeft 감소
+  //= 왼쪽 vegetables: [...state.vegetables],
+  sauce: [...state.sauce],
+  quantity: 1,
+};
+```
+
+<h5>💡메뉴 구별키</h5>
+
+```javascript
+const generateKey = (item) => {
+  return `${item.id}-${item.size}-${item.bread?.id}-${item.cheese?.id}-${JSON.stringify(item.vegetables)}-${JSON.stringify(item.sauce)}`;
+}
+```
+👉 메뉴 ID + 선택한 모든 옵션을 문자열로 조합하여 구별키 생성<br>
+
+
+<h5>💡장바구니 흐름구조</h5>
+
+```javascript
+const newKey = generateKey(newSandwich);
+
+const existingItem = state.cart.find(
+  (item) => generateKey(item) === newKey
+);
+
+if (existingItem) {
+  existingItem.quantity += 1;
+} else {
+  state.cart.push(newSandwich);
+}
+```
+기존 장바구니와 비교(state.cart.find())<br>
+
+같은 key 존재(existingItem)<br>
+👉 수량 증가(existingItem.quantity += 1)<br>
+없으면<br>
+👉 새로운 메뉴 추가(state.cart.push(newSandwich)<br>
+
+🎈 같은 메뉴 + 같은 토핑<br>
+👉 하나의 항목으로 합쳐지고 수량만 증가<br>
+<br>
+🎈같은 메뉴 + 다른 토핑<br>
+👉 별도의 항목으로 추가<br>
+<br>
+장바구니 페이지에서는<br>
+👉 각 항목의 옵션(빵사이즈,빵종류, 치즈, 야채, 소스)을 모두 표시<br>
+
+
+🚀 트러블 슈팅
+1️⃣가로 스크롤 슬라이드 UI 구현<br>
+* 메뉴 리스트를 가로로 넘기는 슬라이드 UI 구현 중 다음 문제가 발생<br>
+* 페이지 간 여백이 비정상적으로 넓어짐<br>
+* 메뉴 아이템이 한쪽으로 치우쳐 보임<br>
+* 일부 페이지에서는 메뉴가 한 줄로 길게 나열됨<br>
+* 드래그 후 페이지 위치가 어긋나는 현상 발생<br>
+👉레이아웃  + 스크롤 계산이 동시에 꼬인 상태가 원인임을 알게 되었습니다.<br>
+
+🎈Page 정렬 방식 수정
+```javascript
+const Page = styled.div`
+  flex: 0 0 100%;
+  display: flex;
+  align-items: flex-start; //왼족 정렬
+  scroll-snap-align: start; // 왼쪽 시작
+`;
+```
+👉 페이지 기준을 왼쪽 정렬로 통일
+
+🎈Grid 정렬 방식 수정
+```javascript
+const Grid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  gap: 20px;
+  justify-content: start; //메뉴 아이템 정렬
+`;
+```
+👉 Grid는 내부에서만 정렬, Page와 역할 분리
+
+🎈scroll-snap 기준 통일
+```javascript
+scroll-snap-align: start;
+```
+👉 모든 페이지 시작 기준을 동일하게 맞춤
+
+🎈드래그 스크롤
+```javascript
+const onMouseMove = (e) => {
+  if (!isDragging) return;
+  e.preventDefault();
+
+  const x = e.pageX - scrollRef.current.offsetLeft; //마우스 X 좌 위치
+  const walk = (x - startX) * 2; //마우스 이동거리(오른쪽:양수, 왼쪽:음수) * 속도조
+
+  scrollRef.current.scrollLeft = scrollLeft - walk;
+  //(드래그 시작 시점의 스크롤 위치 - 마우스 이동거리)
+  //= 오른쪽 드래그 → scrollLeft 감소
+  //= 왼쪽 드래그 → scrollLeft 증가
+};
+```
+👉 마우스 이동 거리 기반으로 스크롤 이동
+
+🎈페이지 계산
+```javascript
+const onMouseUp = () => {
+  setIsDragging(false);
+
+  const width = scrollRef.current.clientWidth;
+  const scrollLeft = scrollRef.current.scrollLeft;
+
+  const newPage = Math.round(scrollLeft / width + 0.2);
+  setCurrentPage(newPage);
+};
+```
+👉현재 scroll 위치 / 페이지 너비<br>
+→ 현재 페이지 index 계산 +0.2는 반올림 보정값<br>
