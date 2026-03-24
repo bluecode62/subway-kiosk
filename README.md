@@ -1,4 +1,4 @@
-<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/7ed0f857-f79b-4de0-b620-91aa07f4ffd2" /># 🥪 써브웨이 키오스크 (개인)
+# 🥪 써브웨이 키오스크 (개인)
 : React 기반으로 제작한 써브웨이 키오스크입니다. 
 React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케이션입니다.  
 샌드위치 옵션 선택, 장바구니 관리, 동일 옵션 상품 병합 로직 등을 구현하며 실제 키오스크의 주문식으로 구현했습니다.
