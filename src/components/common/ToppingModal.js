@@ -19,7 +19,7 @@ const Overlay = styled.div`
 const ModalBox = styled.div`
   width: 95%;
   max-width: 1200px;
-  height: 95vh;
+  height: 95%;
   background: #fff;
   border-radius: 10px;
   display: flex;
@@ -27,6 +27,7 @@ const ModalBox = styled.div`
   align-items: center;
   padding: 20px;
   gap: 20px;
+  overflow: hidden;
 `;
 
 const StepText = styled.p`
@@ -38,6 +39,7 @@ const StepText = styled.p`
 
 const Warning = styled.div`
   width: 100%;
+  height: 24px;
   padding: 10px;
   margin-bottom: 10px;
   background: #fff3cd;
@@ -65,7 +67,7 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  overflow-y: hidden;
+  overflow-y: auto;  
 `;
 
 export default function ToppingModal({ onCancel, warning, onNext }) {

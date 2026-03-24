@@ -9,7 +9,7 @@ import PaymentModal from "../components/cart/PaymentModal";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: #cfd8d3;
   display: flex;
   justify-content: center;

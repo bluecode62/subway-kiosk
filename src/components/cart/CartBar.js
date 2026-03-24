@@ -7,7 +7,7 @@ import OrderButtons from "../common/OrderButtons";
 import { decreaseQuantity, increaseQuantity } from "../../store/orderSlice";
 
 const CartWrapper = styled.div`
-  height: 250px;
+  height: 300px;
   border-top: 1px solid #ddd;
   background: #e3efe8;
   // overflow: hidden;

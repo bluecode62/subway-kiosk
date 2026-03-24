@@ -7,7 +7,7 @@ import CartBar from "../components/cart/CartBar";
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -16,7 +16,7 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   max-width: 1200px;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 `;
@@ -24,6 +24,7 @@ const Container = styled.div`
 const Layout = styled.div`
   display: flex;
   flex: 1;
+  min-height: 0;
 `;
 
 export default function Menu() {
