@@ -502,12 +502,92 @@ const onMouseMove = (e) => {
 const onMouseUp = () => {
   setIsDragging(false);
 
-  const width = scrollRef.current.clientWidth;
-  const scrollLeft = scrollRef.current.scrollLeft;
+  const width = scrollRef.current.clientWidth; // 현재 화면에 보이는 영역의 너비
+  const scrollLeft = scrollRef.current.scrollLeft; // 현재 스크롤 위치
 
-  const newPage = Math.round(scrollLeft / width + 0.2);
+  const newPage = Math.round(scrollLeft / width + 0.2); //현재 페이지, + 0.2해서 페이지 전환 기준을 낮춤 
   setCurrentPage(newPage);
 };
 ```
-👉현재 scroll 위치 / 페이지 너비<br>
-→ 현재 페이지 index 계산 +0.2는 반올림 보정값<br>
+👉 드래그 끝났을 때, 현재 스크롤 위치를 기반으로<br>
+가장 가까운 페이지 번호를 계산해서 이동<br>
+
+🎈 페이지 초기
+```javascript
+useEffect(() => {
+  setCurrentPage(0);
+}, [menus.length]);
+```
+👉 새로운 메뉴 리스트 진입 시 첫 페이지로 초기화<br>
+
+: 레이아웃 정렬 기준과 스크롤 계산 기준이 맞지 않아 발생한 문제를<br>
+구조를 분리하고 기준을 통일하여 해결했습니다.<br>
+
+2️⃣ 해상도에 따라 레이아웃이 깨지는 문제
+노트북에서는 정상인데 큰 화면의 컴퓨터에서는<br>
+* UI가 위로 쏠림
+* 너무 작게 보임
+* 하단이 가려짐
+등의 문제로 해상도 차이로 레이아웃이 어긋났습니다.<br>
+그래서 App.css에서 해상도에 맞게 레이아웃이 맞춰지도록 구조를 작성했습니다.<br>
+
+```javascript
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.kiosk {
+  width: 1200px;
+  height: 1000px;
+  transform-origin: top center;
+
+  transform: scale(
+    min(
+      calc(100vw / 1200),
+      calc(100vh / 1000)
+    )
+  );
+}
+```
+
+🎈 기준 해상도 고정
+```javascript
+width: 1200px;
+height: 1000px;
+```
+👉 앱을 “1200x1000” 기준으로 고정
+
+🎈 현재 화면에 맞게 비율 계산
+```javascript
+calc(100vw / 1200)
+calc(100vh / 1000)
+```
+👉
+100vw / 1200 → 가로 비율<br>
+100vh / 1000 → 세로 비율<br>
+
+```javascript
+min( // <- 더 작은 비율로 맞춤
+      calc(100vw / 1200),
+      calc(100vh / 1000)
+    )
+```
+👉 둘 중 더 작은 비율로 맞춰야 안 잘림<br>
+전체를 비율로 스케일링한 구조<br>
+
+```javascript
+transform-origin: top center;
+```
+👉 기준점을 위쪽 중앙으로 고정
+
+```javascript
+html, body, #root {
+  overflow: hidden;
+}
+👉 스크롤 생김 막기 위해 숨김처리
+```
+: 고정 해상도(1200x1000)를 기준으로 설정한 뒤,<br>
+현재 화면 크기에 맞춰 transform: scale을 적용하여<br>
+모든 해상도에서 동일한 UI 비율을 유지하도록 구현했습니다.<br>
