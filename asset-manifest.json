@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/subway-kiosk/static/css/main.12452ded.css",
-    "main.js": "/subway-kiosk/static/js/main.21d7f525.js",
+    "main.js": "/subway-kiosk/static/js/main.80a115da.js",
     "static/js/453.3ebd9c21.chunk.js": "/subway-kiosk/static/js/453.3ebd9c21.chunk.js",
     "index.html": "/subway-kiosk/index.html",
     "main.12452ded.css.map": "/subway-kiosk/static/css/main.12452ded.css.map",
-    "main.21d7f525.js.map": "/subway-kiosk/static/js/main.21d7f525.js.map",
+    "main.80a115da.js.map": "/subway-kiosk/static/js/main.80a115da.js.map",
     "453.3ebd9c21.chunk.js.map": "/subway-kiosk/static/js/453.3ebd9c21.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.12452ded.css",
-    "static/js/main.21d7f525.js"
+    "static/js/main.80a115da.js"
   ]
 }
