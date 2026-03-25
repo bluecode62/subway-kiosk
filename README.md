@@ -613,4 +613,4 @@ html, body, #root {
 브라우저 환경과 build 환경 차이를 완전히 대응하기 어렵다는 것을 경험했습니다.<br>
 window 객체를 활용한 동적 계산이 필요하다는 것을 학습했습니다.<br>
 
-- Git 링크: https://bluecode62.github.io/subway-kiosk/
+📍 Git Page 링크: https://bluecode62.github.io/subway-kiosk/
