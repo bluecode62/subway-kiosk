@@ -524,70 +524,90 @@ useEffect(() => {
 구조를 분리하고 기준을 통일하여 해결했습니다.<br>
 
 2️⃣ 해상도에 따라 레이아웃이 깨지는 문제
-노트북에서는 정상인데 큰 화면의 컴퓨터에서는<br>
+노트북에서는 정상적으로 보이지만,<br>
+해상도가 큰 환경(컴퓨터 등)에서는 다음과 같은 문제가 발생했습니다.<br>
+
 * UI가 위로 쏠림
-* 너무 작게 보임
-* 하단이 가려짐
-등의 문제로 해상도 차이로 레이아웃이 어긋났습니다.<br>
-그래서 App.css에서 해상도에 맞게 레이아웃이 맞춰지도록 구조를 작성했습니다.<br>
+* 전체 화면이 작게 보임
+* 하단 영역이 잘림
 
+초기에는 transform: scale을 CSS만으로 적용했지만, <br>
+build 이후 환경에서는 viewport 기준이 달라지면서 동일하게 동작하지 않는 문제가 발생했습니다. <br>
+그래서 App.css에서 해상도에 맞게 레이아웃이 맞춰지도록 구조를 개선했습니다.<br>
+
+🎈 window 크기를 기준으로 scale을 계산
 ```javascript
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+useEffect(() => {
+  const updateScale = () => {
+    const scale = Math.min(
+      window.innerWidth / 1200,
+      window.innerHeight / 1000
+    );
 
-.kiosk {
-  width: 1200px;
-  height: 1000px;
-  transform-origin: top center;
+    const kiosk = document.querySelector(".kiosk");
 
-  transform: scale(
-    min(
-      calc(100vw / 1200),
-      calc(100vh / 1000)
-    )
-  );
-}
+    if (kiosk) {
+      const offsetY = (window.innerHeight - 1000 * scale) / 2;
+
+      kiosk.style.transform =
+        `scale(${scale}) translateY(${offsetY / scale}px)`;
+    }
+  };
+
+  updateScale();
+  window.addEventListener("resize", updateScale);
+  return () => window.removeEventListener("resize", updateScale);
+}, []);
 ```
+
 
 🎈 기준 해상도 고정
 ```javascript
-width: 1200px;
-height: 1000px;
+window.innerWidth / 1200 // 가로 비율
+window.innerHeight / 1000 // 세로 비율
 ```
-👉 앱을 “1200x1000” 기준으로 고정
+👉 키오스크 레이아웃를 고정된 기준 해상도 정하고(1200x1000),<br> 
+현재 화면 대비 비율 계산<br>
 
-🎈 현재 화면에 맞게 비율 계산
+🎈 더 작은 비율 선택
 ```javascript
-calc(100vw / 1200)
-calc(100vh / 1000)
+Math.min(...)
 ```
-👉
-100vw / 1200 → 가로 비율<br>
-100vh / 1000 → 세로 비율<br>
+👉 화면이 잘리지 않도록 더 작은 비율 기준으로 전체 축소<br>
 
+🎈 중앙 정렬 보정
 ```javascript
-min( // <- 더 작은 비율로 맞춤
-      calc(100vw / 1200),
-      calc(100vh / 1000)
-    )
+const offsetY = (window.innerHeight - 1000 * scale) / 2;
 ```
-👉 둘 중 더 작은 비율로 맞춰야 안 잘림<br>
-전체를 비율로 스케일링한 구조<br>
+👉 scale 적용 후 남는 여백을 계산해서 위쪽으로 쏠리는 문제를 해결<br>
 
+🎈 transform 적용
 ```javascript
-transform-origin: top center;
+scale(${scale}) translateY(${offsetY / scale}px)
 ```
 👉 기준점을 위쪽 중앙으로 고정
 
 ```javascript
-html, body, #root {
-  overflow: hidden;
-}
-👉 스크롤 생김 막기 위해 숨김처리
+scale(${scale}) translateY(${offsetY / scale}px)
 ```
-: 고정 해상도(1200x1000)를 기준으로 설정한 뒤,<br>
-현재 화면 크기에 맞춰 transform: scale을 적용하여<br>
-모든 해상도에서 동일한 UI 비율을 유지하도록 구현했습니다.<br>
+* scale 먼저 적용<br>
+* translateY로 위치 보정<br>
+👉 translateY 값에 / scale을 해줘야<br>
+scale 이후 좌표계 기준에서 정확히 중앙 정렬됨<br>
+
+```javascript
+// App.css에서
+html, body, #root {
+  overflow: hidden; //  스크롤 생김 막기 위해 숨김
+}
+
+.kiosk {
+  width: 1200px; // 고정 너비
+ height: 1000px; // 고정 높이값 
+}
+```
+👉 스크롤 방지와 너비높이값 설정
+
+: 단순 CSS vh, vw만으로는<br>
+브라우저 환경과 build 환경 차이를 완전히 대응하기 어렵다는 것을 경험했습니다.<br>
+window 객체를 활용한 동적 계산이 필요하다는 것을 학습했습니다.<br>
