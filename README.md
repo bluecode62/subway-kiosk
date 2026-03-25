@@ -356,7 +356,7 @@ if (existingItem) {
 * 드래그 후 페이지 위치가 어긋나는 현상 발생<br>
 <br>
 👉레이아웃  + 스크롤 계산이 동시에 꼬인 상태가 원인임을 알게 되었습니다.<br>
-
+<br>
 🎈Page 정렬 방식 수정
 ```javascript
 const Page = styled.div`
