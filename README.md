@@ -451,7 +451,7 @@ if (existingItem) {
 * 일부 페이지에서는 메뉴가 한 줄로 길게 나열됨<br>
 * 드래그 후 페이지 위치가 어긋나는 현상 발생<br>
 👉 레이아웃  + 스크롤 계산이 동시에 꼬인 상태가 원인임을 알게 되었습니다.<br>
-<br>
+
 🎈Page 정렬 방식 수정
 ```javascript
 const Page = styled.div`
