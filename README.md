@@ -603,7 +603,7 @@ html, body, #root {
 }
 
 .kiosk {
-  width: 1200px; // 고정 너비
+ width: 1200px; // 고정 너비
  transform-origin: top center; // transform의 기준점을 상단 중앙으로 설정
 }
 ```
