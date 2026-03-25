@@ -604,10 +604,10 @@ html, body, #root {
 
 .kiosk {
   width: 1200px; // 고정 너비
- height: 1000px; // 고정 높이값 
+ transform-origin: top center; // transform의 기준점을 상단 중앙으로 설정
 }
 ```
-👉 스크롤 방지와 너비높이값 설정
+👉 스크롤 방지와 scale 이후 위치 계산을 정확하게 하기 위한 기준점 설정
 
 : 단순 CSS vh, vw만으로는<br>
 브라우저 환경과 build 환경 차이를 완전히 대응하기 어렵다는 것을 경험했습니다.<br>
