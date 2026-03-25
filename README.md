@@ -12,8 +12,8 @@ React와 Redux Toolkit을 활용하여 제작한 키오스크 웹 애플리케�
 
 ###  📂 페이지 구성
 * 메인 홈화면 페이지(Home.js)
-* 메뉴화면 페이지(Menu.js)
-* 카트화면 페이지(Cart.js)
+* 메뉴 페이지(Menu.js)
+* 장바구니 페이지(Cart.js)
 * 주문완료 페이지(Paid.js)
 
 ### ✨ 주요 기능
