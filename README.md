@@ -390,7 +390,7 @@ const onMouseMove = (e) => {
   e.preventDefault();
 
   const x = e.pageX - scrollRef.current.offsetLeft; //마우스 X 좌 위치
-  const walk = (x - startX) * 2; //마우스 이동거(오른쪽:양수, 왼쪽:음수)
+  const walk = (x - startX) * 2; //마우스 이동거리(오른쪽:양수, 왼쪽:음수)
 
   scrollRef.current.scrollLeft = scrollLeft - walk;
   //(드래그 시작 시점의 스크롤 위치 - 마우스 이동거리)
