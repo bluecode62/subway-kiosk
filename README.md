@@ -609,8 +609,6 @@ html, body, #root {
 ```
 👉 스크롤 방지와 scale 이후 위치 계산을 정확하게 하기 위한 기준점 설정
 
-: 단순 CSS vh, vw만으로는<br>
-브라우저 환경과 build 환경 차이를 완전히 대응하기 어렵다는 것을 경험했습니다.<br>
-window 객체를 활용한 동적 계산이 필요하다는 것을 학습했습니다.<br>
+: 고정된 CSS 값만으로는 화면마다 달라지는 크기를 맞추기 어려워, window 크기를 기준으로 계산하는 방법을 배웠습니다.<br>
 
 📍 Git Page 링크: https://bluecode62.github.io/subway-kiosk/
